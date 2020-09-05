@@ -1,0 +1,32 @@
+
+<!-- IF not S_POINTS_DISABLED -->
+<form method="post" action="{ACTION}" name="post">
+	<div class="contentHeader">
+		<h1 class="contentTitle">{L_manadjs_title} <span class="bubble">{ADJ_COUNT}</span>{HPTT_ADMIN_LINK}</h1>
+	</div>
+	<div class="tableHeader floatRight">
+		<button class="mainoption" type="button" name="addadj" onclick="window.location='manage_adjustments.php{SID}&amp;upd=true'"><i class="fa fa-plus"></i>{L_add_adjustment}</button>
+	</div>
+	<div class="center pagination_wrapper">
+			{PAGINATION}
+	</div>
+	<div class="clear"></div>
+	<table class="table fullwidth colorswitch scrollable-x">
+		{ADJ_LIST}
+	</table>
+	<div class="center pagination_wrapper">
+			{PAGINATION}
+	</div>
+	<div class="contentFooter">
+		{BUTTON_MENU}
+		<input type="hidden" name="del" value="1" disabled="disabled" id="mass_del_submit" />
+		<div class="clear"></div>
+	</div>
+	{CSRF_TOKEN}
+</form>
+
+<!-- ELSE -->
+<div class="infobox infobox-large infobox-red clearfix">
+	<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> {L_disabled_points_info}
+</div>
+<!-- ENDIF -->

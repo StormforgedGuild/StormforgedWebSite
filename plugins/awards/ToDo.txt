@@ -1,0 +1,16 @@
+
+
+
+--------------------------------------------
+spontan einfälle...
+	- vllt. die Zuweisungen editieren/updaten Funktion etwas erweitern mit Notify und korrektem Log eintrag
+	- wow_cronmodule siehe Quelltext , AND or OR checkbox einbauen
+--------------------------------------------
+
+
+
+SVG Notiz:
+	Optimiere die SVG Dateien nachträglich mit dem SVG-Editor: https://petercollingridge.appspot.com/svg-editor/
+	Beschränke dich auf ein minimum an "Style" Optimierungen (keine anderen) und bearbeite nachträglich folgendes...
+	Fill & Stroke aus den <path> Tags rauslöschen und im übergeordneten <g id=""> ansprechen.
+			- Bsp.: <g id"Area01" fill="#FFF"><path ...></g>

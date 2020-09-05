@@ -1,0 +1,68 @@
+<script type="text/javascript">
+	$(function() {
+		$('.eyeToggleTrigger').on('click', function(event){
+			if ($(this).hasClass('eye')){
+				//Hide
+				$(this).siblings('.published_cb').val(0);
+				$(this).removeClass('eye');
+				$(this).addClass('eye-gray');
+			} else {
+				$(this).siblings('.published_cb').val(1);
+				$(this).removeClass('eye-gray');
+				$(this).addClass('eye');
+			}
+		});
+
+		$('.featuredToggleTrigger').on('click', function(event){
+			if ($(this).hasClass('featured')){
+				//Hide
+				$(this).siblings('.featured_cb').val(0);
+				$(this).removeClass('featured');
+				$(this).addClass('not-featured');
+			} else {
+				$(this).siblings('.featured_cb').val(1);
+				$(this).removeClass('not-featured');
+				$(this).addClass('featured');
+			}
+		});
+
+		$('.index_cb').on('click', function(){
+			if(this.checked){
+				$('.index_cb').prop('disabled', true);
+				$(this).prop('disabled', false);
+			} else {
+				$('.index_cb').prop('disabled', false);
+				$('.index_cb').prop('checked', false);
+			}
+		})
+	});
+</script>
+
+
+<form method="post" action="{ACTION}" name="post">
+	<div class="contentHeader">
+		<h1 class="contentTitle">{L_manage_articles}: {CATEGORY_NAME} <span class="bubble">{ARTICLE_COUNT}</span> <a href="{EQDKP_ROOT_PATH}admin/manage_article_categories.php{SID}&c={CID}"><i class="fa fa-pencil" title="{L_edit}" style="font-size:0.8em;"></i></a> <!-- IF S_CATEGORY_PUBLISHED --><div class="eye" style="cursor:auto;"></div><!-- ELSE --><div class="eye-gray" style="cursor:none;"></div><!-- ENDIF -->{HPTT_ADMIN_LINK}</h1>
+	</div>
+	<div class="tableHeader floatRight">
+		<button class="mainoption" type="button" name="addadj" onclick="window.location='manage_articles.php{SID}&amp;a=0&amp;c={CID}'"><i class="fa fa-plus"></i>{L_add_new_article}</button>
+	</div>
+	<div class="center pagination_wrapper">
+		{PAGINATION}
+	</div>
+	<div class="clear"></div>
+	<table class="table fullwidth colorswitch" id="article_categories-table">
+		{ARTICLE_LIST}
+	</table>
+	<div class="center pagination_wrapper">
+		{PAGINATION}
+	</div>
+	<div class="contentFooter">
+		{BUTTON_MENU}
+
+		<input type="hidden" name="c" value="{CID}" />
+		<input type="hidden" name="del" value="1" disabled="disabled" id="mass_del_submit" />
+		<button class="mainoption" type="submit" name="save"><i class="fa fa-check"></i>{L_save}</button>
+		<button class="mainoption" type="button" onclick="window.location='manage_article_categories.php{SID}'"><i class="fa fa-chevron-left"></i>{L_back}</button>
+	</div>
+{CSRF_TOKEN}
+</form>

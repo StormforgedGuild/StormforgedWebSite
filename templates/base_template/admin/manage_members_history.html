@@ -1,0 +1,85 @@
+
+<form action='{ACTION}&member={MEMBER_ID}' method='post' >
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_manage_members}: {MEMBER_NAME}</h1>
+</div>
+
+<div class="clear"></div>
+
+<div id='profile_information'>
+	<ul>
+		<li><a href='#fragment-2'><span>{L_tab_raids}</span></a></li>
+		<li><a href='#fragment-3'><span>{L_tab_items}</span></a></li>
+		<!-- IF not S_POINTS_DISABLED -->
+		<li><a href='#fragment-4'><span>{L_tab_adjustments}</span></a></li>
+		<!-- ENDIF -->
+	</ul>
+
+	<!-- RAIDS TABLE -->
+	<div id="fragment-2">
+		<div class="tableHeader">
+			<h2>{L_raid_attendance_history}</h2>
+		</div>
+		<div class="center pagination_wrapper">
+			{RAID_PAGINATION}
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{RAID_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{RAID_PAGINATION}
+		</div>
+	</div>
+	
+	<!-- ITEMS TABLE -->
+	<div id="fragment-3">
+		<div class="tableHeader">
+			<h2>{L_item_purchase_history}</h2>
+		</div>
+		<div class="center pagination_wrapper">
+			{ITEM_PAGINATION}
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{ITEM_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{ITEM_PAGINATION}
+		</div>
+	</div>
+	
+	<!-- IF not S_POINTS_DISABLED -->
+	<!-- ADJUSTMENTS TABLE-->
+	<div id="fragment-4">
+		<div class="tableHeader">
+			<h2>{L_individual_adjustment_history}</h2>
+		</div>
+		<div class="center pagination_wrapper">
+			{ADJUSTMENT_PAGINATION}
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{ADJUSTMENT_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{ADJUSTMENT_PAGINATION}
+		</div>
+	</div>
+	<!-- ENDIF -->
+	
+</div>
+
+<script>
+function change_raid_setting(value){
+	if(value){
+		$('#delete_raid_checkbox').attr('checked', true);
+	} else {
+		$('#delete_raid_checkbox').attr('checked', false);
+	}
+}
+</script>
+<div class="contentFooter">
+		<button type="button" onclick="delete_warning()" /><i class="fa fa-times"></i>{L_delete_selected_entries}</button>
+		<input type="checkbox" name="delete_raids" id="delete_raid_checkbox" value="1" style="display:none"/>
+		<button class="mainoption" type="submit" name="del_history_entries" id="del_history_entries_btm" style="display:none"></button>
+</div>
+{CSRF_TOKEN}
+</form>

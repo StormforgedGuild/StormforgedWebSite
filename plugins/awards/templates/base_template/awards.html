@@ -1,0 +1,160 @@
+<script type="text/javascript">
+$(function(){
+<!-- IF LAYOUT == 'default' -->
+	$('.awToggleTrigger').on('click', function(event){
+		if ($(this).hasClass('show-member')){
+			$(this).removeClass('show-member');
+			$(this).children('.ac-user-list').hide(50);
+		}else{
+			$('.awToggleTrigger').each(function(){
+				$(this).removeClass('show-member');
+				$(this).children('.ac-user-list').hide(50);
+			});
+			$(this).addClass('show-member');
+			$(this).children('.ac-user-list').show(200);
+		}
+	});
+
+	$('.membertooltip').each(function() {
+		$(this).qtip({
+			content: $(this).children('.membertooltip-data'),
+			position: { at: 'bottom center', my: 'top center' },
+			style: { tip: { corner: true }, widget: true },
+			show: { solo: true, effect: function(offset){ $(this).slideDown(100); } },
+			hide: {when: {event:'mouseout unfocus'}, fixed: true, delay: 500}
+		});
+	});
+<!-- ELSE -->
+	$('.awardtooltip').each(function() {
+		$(this).qtip({
+			content: $(this).children('.awardtooltip-data'),
+			position: { at: 'bottom center', my: 'top center' },
+			style: { tip: { corner: true }, widget: true },
+			show: { solo: true, effect: function(offset){ $(this).slideDown(100); } },
+			hide: {when: {event:'mouseout unfocus'}, fixed: true, delay: 500}
+		});
+	});
+<!-- ENDIF -->
+});
+</script>
+
+<div id="awards">
+	<div class="contentHeader"></div>
+	
+	<div class="contentBody">
+		<!-- IF User_logged_in -->
+		<span class="aw-points floatLeft" title="{L_aw_ap}">{AP}&nbsp;<i class="fa fa-bookmark-o"></i></span>
+		<div class="aw-tabs floatRight">
+			<button type="link" name="aw-tab-user" class="mainoption" onclick="location.href='{USER_PROFILE_LINK}';">{L_aw_tab_user}</button>
+			<!-- IF S_AW_ADD --><button type="link" name="aw-tab-achiev" class="mainoption"onclick="location.href='{EQDKP_ROOT_PATH}plugins/awards/admin/manage_achievements.php{SID}';">{L_aw_tab_achieve}</button><!-- ENDIF -->
+			<!-- IF S_AW_MANAGE --><button type="link" name="aw-tab-assign" class="mainoption" onclick="location.href='{EQDKP_ROOT_PATH}plugins/awards/admin/manage_assignments.php{SID}';">{L_aw_tab_assign}</button><!-- ENDIF -->
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<!-- ENDIF -->
+		
+		<div class="aw-list">
+			<div class="aw-divider-tab"></div>
+			<div id="aw_progress">
+				<div class="progress-label">Loading...</div>
+			</div>
+			<div class="aw-divider"></div>
+			
+				<!-- IF LAYOUT != 'default' --><div class="{LAYOUT}"><!-- ENDIF -->
+				
+				<!-- BEGIN award -->
+				<!-- IF NOT award.SPECIAL OR award.USER_R OR S_ADMIN -->
+					<!-- IF LAYOUT == 'minimalist' -->
+					
+					<div class="award {award.REACHED}" data-id="{award.ID}">
+						<div class="ac-icon floatLeft awardtooltip" data-name="{award.TITLE}" data-date="{award.DATE}">
+							{award.ICON}
+							<div class="awardtooltip-data" style="display:none;">
+								<h2 style="margin-bottom:1px;">{award.TITLE}</h2>
+								<span style="position:absolute; top:1px; right:3px;">{award.DATE}</span>
+								<span>{award.DESC}</span>
+								<br /><br />
+								DKP: {award.DKP}<br />AP: {award.AP}
+								
+								<!-- BEGIN users -->
+								<div style="padding-top:10px;">
+									<span style="font-weight:700;">{award.users.USER}</span>
+									<!-- IF award.users.REACHED == "reached" -->
+										<div style="padding-left:15px;">
+										<!-- BEGIN members -->
+										<span style="font-weight:700;">{award.users.members.MEMBER}</span> {award.users.members.DATE}<br />
+										<!-- END members -->
+										</div>
+									<!-- ELSE -->
+										{L_aw_user_unreached}
+									<!-- ENDIF -->
+								</div>
+								<!-- END users -->
+							</div>
+						</div>
+					</div>
+					
+					<!-- ELSE -->
+					
+					<div class="award {award.REACHED} awToggleTrigger" data-id="{award.ID}">
+						<div class="ac-icon floatLeft">
+							{award.ICON}
+							<!-- IF NOT award.ACTIVE -->
+								<i class="fa fa-clock-o ac-inactive" title="{L_aw_is_inactive}"></i>
+							<!-- ENDIF -->
+							<!-- IF award.SPECIAL -->
+								<i class="fa fa-eye-slash ac-special" title="{L_aw_is_special}"></i>
+							<!-- ENDIF -->
+						</div>
+						
+						<div class="ac-points floatRight">
+							<!-- IF award.DKP -->
+							<span class="ac-points-big <!-- IF award.DKP > 0 -->positive<!-- ELSE -->negative<!-- ENDIF -->">
+								{award.DKP}
+								<span class="ac-points-small">{award.AP}</span>
+							</span>
+							<!-- ELSE -->
+							<span class="ac-points-big">
+								{award.AP}
+							</span>
+							<!-- ENDIF -->
+						</div>
+						
+						<div class="ac-main">
+							<h2 class="ac-title">{award.TITLE}</h2>
+							<p class="ac-desc">{award.DESC}</p>
+							<p class="ac-date">{award.DATE}</p>
+						</div>
+						
+						<div class="ac-user-list" style="display:none;">
+							<!-- BEGIN users -->
+							<div class="ac-member-{award.users.REACHED} membertooltip" data-user="{award.users.ID}">
+								{award.users.USER}
+								<div class="membertooltip-data" style="display:none;">
+									<!-- IF award.users.REACHED == "reached" -->
+									<!-- BEGIN members -->
+										{award.users.members.MEMBER} {award.users.members.DATE}
+										<br />
+									<!-- END members -->
+									<!-- ELSE -->
+										{L_aw_user_unreached}
+									<!-- ENDIF -->
+								</div>
+							</div>
+							<!-- END users -->
+						</div>
+					</div>
+					
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				<!-- END award -->
+				
+			<!-- IF LAYOUT != 'default' --></div><!-- ENDIF -->
+			
+		</div>
+	</div>
+	
+	<div class="contentFooter">
+		{PAGINATION}
+	</div>
+</div>

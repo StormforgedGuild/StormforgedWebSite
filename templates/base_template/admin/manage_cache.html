@@ -1,0 +1,164 @@
+
+<form method="post" action="{ACTION}" name="post">
+<fieldset class="settings">
+	<legend>{L_pdc_settings}</legend>
+	<dl>
+		<dt>
+			<label>{L_pdc_cache_select_text}</label><br />
+			<span>{L_pdc_cache_select_info}</span>
+		</dt>
+		<dd>
+			<label>
+				<select name="cache_selection" class="input" id="cache_select">
+					<!-- BEGIN cache_selection_row -->
+					<option value="{cache_selection_row.VALUE}"{cache_selection_row.SELECTED}>{cache_selection_row.OPTION}</option>
+					<!-- END cache_selection_row -->
+				</select>
+			</label>
+		</dd>
+	</dl>
+	<div id="all_cache_divs">
+	<div id="div_cache_none" style="display:{DIV_CACHE_NONE_VISIBLE}">
+		<div class="infobox infobox-large infobox-red clearfix">
+			<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> {L_pdc_cache_info_none}
+		</div>
+	</div>
+
+	<div id="div_cache_file" style="display:{DIV_CACHE_FILE_VISIBLE}">
+		<div class="infobox infobox-large infobox-blue clearfix">
+			<i class="fa fa-info-circle fa-4x pull-left"></i> {L_pdc_cache_info_file}
+		</div>
+		<br />
+		<dl>
+			<dt><label>{L_pdc_dttl_text}</label><br /><span>{L_pdc_dttl_help}</span></dt>
+			<dd><label><input type='text' name='cache_file[dttl]' size='32' value="{V_CACHE_FILE_DTTL}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_globalprefix}</label><br /><span>{L_pdc_globalprefix_help}</span></dt>
+			<dd><label><input type='text' name='cache_file[prefix]' size='32' value="{V_CACHE_FILE_PREFIX}" class='input' /></label></dd>
+		</dl>
+	</div>
+
+	<div id="div_cache_apcu" style="display:{DIV_CACHE_APCU_VISIBLE}">
+		<dl>
+			<dt><label>{L_pdc_dttl_text}</label><br /><span>{L_pdc_dttl_help}</span></dt>
+			<dd><label><input type='text' name='cache_apcu[dttl]' size='32' value="{V_CACHE_APCU_DTTL}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_globalprefix}</label><br /><span>{L_pdc_globalprefix_help}</span></dt>
+			<dd><label><input type='text' name='cache_apcu[prefix]' size='32' value="{V_CACHE_APCU_PREFIX}" class='input' /></label></dd>
+		</dl>
+	</div>
+	<div id="div_cache_memcache" style="display:{DIV_CACHE_MEMCACHE_VISIBLE}">
+		<div class="infobox infobox-large infobox-blue clearfix">
+			<i class="fa fa-info-circle fa-4x pull-left"></i> {L_pdc_cache_info_memcache}
+		</div>
+		<br />
+		<dl>
+			<dt><label>{L_pdc_dttl_text}</label><br /><span>{L_pdc_dttl_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcache[dttl]' size='32' value="{V_CACHE_MEMCACHE_DTTL}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_globalprefix}</label><br /><span>{L_pdc_globalprefix_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcache[prefix]' size='32' value="{V_CACHE_MEMCACHE_PREFIX}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_memcache_server_text}</label><br /><span>{L_pdc_memcache_server_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcache[server]' size='32' value="{V_CACHE_MEMCACHE_SERVER}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_memcache_port_text}</label><br /><span>{pdc_memcache_port_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcache[port]' size='32' value="{V_CACHE_MEMCACHE_PORT}" class='input' /></label></dd>
+		</dl>
+	</div>
+	<div id="div_cache_memcached" style="display:{DIV_CACHE_MEMCACHED_VISIBLE}">
+		<div class="infobox infobox-large infobox-blue clearfix">
+			<i class="fa fa-info-circle fa-4x pull-left"></i> {L_pdc_cache_info_memcached}
+		</div>
+		<br />
+		<dl>
+			<dt><label>{L_pdc_dttl_text}</label><br /><span>{L_pdc_dttl_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcached[dttl]' size='32' value="{V_CACHE_MEMCACHED_DTTL}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_globalprefix}</label><br /><span>{L_pdc_globalprefix_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcached[prefix]' size='32' value="{V_CACHE_MEMCACHED_PREFIX}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_memcache_server_text}</label><br /><span>{L_pdc_memcache_server_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcached[server]' size='32' value="{V_CACHE_MEMCACHED_SERVER}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_memcache_port_text}</label><br /><span>{L_pdc_memcache_port_help}</span></dt>
+			<dd><label><input type='text' name='cache_memcached[port]' size='32' value="{V_CACHE_MEMCACHED_PORT}" class='input' /></label></dd>
+		</dl>
+	</div>
+	<div id="div_cache_redis" style="display:{DIV_CACHE_REDIS_VISIBLE}">
+		<div class="infobox infobox-large infobox-blue clearfix">
+			<i class="fa fa-info-circle fa-4x pull-left"></i> {L_pdc_cache_info_redis}
+		</div>
+		<br />
+		<dl>
+			<dt><label>{L_pdc_dttl_text}</label><br /><span>{L_pdc_dttl_help}</span></dt>
+			<dd><label><input type='text' name='cache_redis[dttl]' size='32' value="{V_CACHE_REDIS_DTTL}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_globalprefix}</label><br /><span>{L_pdc_globalprefix_help}</span></dt>
+			<dd><label><input type='text' name='cache_redis[prefix]' size='32' value="{V_CACHE_REDIS_PREFIX}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_redis_server_text}</label><br /><span>{L_pdc_redis_server_help}</span></dt>
+			<dd><label><input type='text' name='cache_redis[server]' size='32' value="{V_CACHE_REDIS_SERVER}" class='input' /></label></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_pdc_redis_port_text}</label><br /><span>{L_pdc_redis_port_help}</span></dt>
+			<dd><label><input type='text' name='cache_redis[port]' size='32' value="{V_CACHE_REDIS_PORT}" class='input' placeholder='6379'/></label></dd>
+		</dl>
+	</div>
+	</div>
+	<br />
+	<div>
+		<button type="submit" name="cache_save" class="mainoption"><i class="fa fa-check"></i>{L_save}</button>
+	</div>
+</fieldset>
+
+<!-- IF PDC_CACHE_ENABLED -->
+<br />
+<fieldset class="settings">
+	<legend>{L_pdc_table}</legend>
+	<div class="infobox infobox-large infobox-blue clearfix">
+		<i class="fa fa-info-circle fa-4x pull-left"></i> {L_CACHE_TABLE_INFO}
+	</div>
+	<br />
+	<div class="tableHeader floatRight">
+		<button type="submit" name="cache_clear" class="mainoption"><i class="fa fa-times"></i>{L_pdc_clear}</button>
+		<button type="submit" name="cache_cleanup" class="mainoption"><i class="fa fa-trash-o"></i>{L_pdc_cleanup}</button>
+	</div>
+	<table class="table fullwidth colorswitch hoverrows">
+		<tr>
+			<th colspan="2">{L_pdc_globalprefix}</th>
+			<th>{L_pdc_entity}</th>
+			<th>{L_pdc_status}</th>
+			<th>{L_pdc_expire_time}</th>
+			<th>{L_pdc_size}</th>
+		</tr>
+		<!-- BEGIN cache_entity_list_row -->
+		<tr>
+			<td><a href="manage_cache.php{SID}&del_key={cache_entity_list_row.KEY}&link_hash={CSRF_DEL_TOKEN}"><i class="fa fa-lg fa-trash-o" ></i></a></td>
+			<td>{cache_entity_list_row.GLOBAL_PREFIX}</td>
+			<td>{cache_entity_list_row.KEY}</td>
+			<td>{cache_entity_list_row.EXPIRED}</td>
+			<td>{cache_entity_list_row.EXPIRY_DATE}</td>
+			<td>{cache_entity_list_row.SIZE}</td>
+		</tr>
+		<!-- END cache_entity_list_row -->
+	</table>
+	<br />
+	<div>
+		<button type="submit" name="cache_clear" class="mainoption"><i class="fa fa-times"></i>{L_pdc_clear}</button>
+		<button type="submit" name="cache_cleanup" class="mainoption"><i class="fa fa-trash-o"></i>{L_pdc_cleanup}</button>
+	</div>
+</fieldset>
+<!-- ENDIF -->
+{CSRF_TOKEN}
+</form>

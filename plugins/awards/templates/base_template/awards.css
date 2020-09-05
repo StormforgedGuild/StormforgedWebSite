@@ -1,0 +1,274 @@
+/*	Project:	EQdkp-Plus
+ *	Package:	Awards  Plugin
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2017 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/***************************************
+ *             LESS-VARS
+ ***************************************/
+@awardsReachedBorderColor: #CCC;
+@awardsReachedBorderColorHover: #6BA6FF;
+
+@awardsUnreachedBorderColor: #777;
+@awardsUnreachedBorderColorHover: #CCC;
+@awardsUnreachedMemberColor: #666;
+
+@awardsDividerColor: #303030;
+
+
+/***************************************
+ *              CONTENT  
+ ***************************************/
+.aw-points {
+	margin-top: .4em;
+	margin-left: 3em;
+	font-size: 15px;
+	font-weight: 700;
+	font-family: "Times New Roman", Times, serif;
+	cursor: help;
+}
+
+.aw-tabs { margin-right:2px; }
+
+#aw_progress { margin: 5px; font-size: 0.7em !important; }
+#aw_progress .ui-progressbar-value { margin-top: -1.7em; }
+#aw_progress .progress-label {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 0.2em;
+    font-size: 12px;
+}
+
+.aw-divider {
+	margin: 5px 0;
+    height: 1px;
+	border-radius: 40%;
+    background: linear-gradient( to right,
+		fade(@awardsDividerColor, 10) 0%,
+		fade(@awardsDividerColor, 82) 40%,
+		@awardsDividerColor 50%,
+		fade(@awardsDividerColor, 82) 60%,
+		fade(@awardsDividerColor, 10) 100%
+	)repeat scroll 0% 0% transparent;
+}
+.aw-divider-tab {
+	margin-top: 0;
+	margin-bottom: 5px;
+	height: 1px;
+	border-radius: 40%;
+}
+
+/***************************************
+ *               AWARD  
+ ***************************************/
+.award {
+	height: auto;
+	padding: 5px;
+	margin: 1px 0;
+	border: 2px solid @awardsReachedBorderColor;
+	border-radius: 2px;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5) inset;
+}
+.award:hover {
+	border-color: @awardsReachedBorderColorHover;
+	box-shadow: 0px 0px 7px #06f;
+}
+
+.award.unreached,
+.unreached .award {
+	height: auto;
+	border: 2px solid @awardsUnreachedBorderColor;
+	box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.8) inset;
+}
+.award.unreached:hover,
+.unreached .award:hover,
+.award.unreached.show-member,
+.unreached.show-member .award {
+	border-color: @awardsUnreachedBorderColorHover;
+	box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5) inset;
+}
+
+.unreached .ac-main,
+.unreached .ac-points,
+.unreached .award .ac-main,
+.unreached .award .ac-points { opacity: 0.2; }
+
+.unreached .ac-icon img,
+.unreached .ac-icon svg { opacity: 0.2; }
+
+.unreached:hover .ac-icon img,
+.unreached:hover .ac-icon svg,
+.unreached.show-member .ac-icon img,
+.unreached.show-member .ac-icon svg { opacity: 0.5; }
+
+.unreached:hover .ac-main,
+.unreached:hover .ac-points,
+.unreached .award:hover .ac-main,
+.unreached .award:hover .ac-points,
+.unreached.show-member .ac-main,
+.unreached.show-member .ac-points { opacity: 0.8; }
+
+.ac-icon img, .ac-icon svg {
+	height: 50px;
+	width: 50px;
+	border-radius: 4px;
+}
+
+.ac-inactive {
+	position: relative;
+	top: -18px;
+	left: 15px;
+	opacity: 0.1;
+	cursor: help;
+	z-index: 1;
+}
+.ac-special {
+	position: relative;
+	top: -18px;
+	left: 17px;
+	opacity: 0.1;
+	cursor: help;
+	z-index: 1;
+}
+#awards .award:hover .ac-inactive,
+#awards .award:hover .ac-special { opacity: 0.5; }
+
+.ac-points { width: 50px; }
+.ac-points-big {
+	font-size: 2em;
+	font-weight: 400;
+	position: relative;
+	top: 13px;
+	z-index: 1;
+}
+.ac-points-small {
+	position: absolute;
+	top: -13px;
+	left: 0;
+	z-index: 2;
+	width: 50px;
+	font-size: 18px;
+	text-align: right;
+	color: #000;
+}
+
+.ac-main {
+	margin-left: 65px;
+	margin-right: 65px;
+	text-align: center;
+}
+.ac-main .ac-title {
+	margin-bottom: 5px;
+}
+.ac-main .ac-desc {
+	margin-left: 20%;
+	margin-right: 20%;
+	height: 15px;
+	overflow: hidden;
+}
+.award.show-member .ac-main .ac-desc {
+	margin-left: 20%;
+	margin-right: 20%;
+	height: auto;
+	overflow: hidden;
+}
+
+.ac-main .ac-date {
+	margin-top: 10px;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.ac-user-list {
+	padding: 5px 20px;
+}
+
+.ac-member-reached {
+	padding: 5px 5px;
+	display: inline-block;
+	font-weight: bold;
+}
+.ac-member-unreached {
+	padding: 5px 5px;
+	display: inline-block;
+	font-weight: bold;
+	opacity: 0.7;
+}
+.ac-member-unreached > a { color: @awardsUnreachedMemberColor !important; }
+
+
+/***************************************
+ *     IF LAYOUT == minimalist
+ ***************************************/
+.minimalist .award { display: inline-block; }
+
+.minimalist .ac-icon img,
+.minimalist .ac-icon svg { height: 75px; width: 75px; }
+
+
+
+/***************************************
+ *    USERPROFILE adjustments 
+ ***************************************/
+#progress-header { width: 100%; margin: 0 auto; }
+.progress-left, .progress-right { width: 10%; }
+.progress-right { text-align: right; }
+
+#my_aw_progress {
+	margin: 5px;
+	height: 16px;
+	width: 80%;
+}
+#my_aw_progress .progress-label { text-align: center; }
+#my_aw_progress .ui-progressbar-value { margin-top: -14px; }
+
+/***************************************
+ *          AWARD QUICK INFO 
+ ***************************************/
+.awards-tooltip-container { display: inline; position: relative; }
+#awards-tooltip { padding: 3px; min-width: 300px; display: none; }
+
+.aw-tt-action-bar .floatLeft { font-weight: 700; }
+.aw-tt-action-bar .floatLeft i:nth-child(1) { padding: 0 3px; font-size: 14px; }
+.aw-tt-action-bar .floatLeft i:nth-child(2) { padding-right: 3px; font-size: 14px; }
+
+#awards-tooltip li ul li { position: relative; margin: 0 !important; min-height: 22px; }
+
+.aw-tt-title { position: absolute; top: 1px; font-weight: 700; font-size: 14px; }
+.aw-tt-date { position: absolute; top: -4px; right: 4px; font-size: 9px; }
+.aw-tt-member { position: absolute; right: 4px; bottom: 0; }
+
+.aw-tt-action-bar-btm { text-align: center; }
+
+
+
+
+/********************************************************
+ *         EXAMPLE CODE for the custom.css
+ ********************************************************/
+/*  These rules will overwrite all SVG icons.
+	With the g:nth-child() can you see which SVG Element will be called.
+		e.g. g:nth-child(1) for background-color        */
+		
+/*
+#awards .award .ac-icon svg g:nth-child(1){ fill: #000; }
+#awards .award .ac-icon svg g:nth-child(2){ fill: #FFF; }
+#awards .award .ac-icon svg g:nth-child(3){ fill: #FFF; }
+#awards .award .ac-icon svg g:nth-child(4){ fill: #FFF; }
+#awards .award .ac-icon svg g:nth-child(5){ fill: #FFF; }
+*/

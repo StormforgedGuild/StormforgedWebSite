@@ -1,0 +1,35 @@
+<!-- IF S_DKP_EASYMODE -->
+<div class="infobox infobox-large infobox-blue clearfix">
+		<i class="fa fa-info-circle fa-4x pull-left"></i> {L_dkp_easymode_active}
+	</div>
+<!-- ELSE -->
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_menu_itempools} <span class="bubble">{ITEMPOOLS_COUNT}</span></h1>
+</div>
+<div class="tableHeader floatRight">
+		<button type="button" name="add" class="mainoption" onclick="window.location='manage_itempools.php{SID}&amp;upd=true'" ><i class="fa fa-plus"></i>{L_add_itempool}</button>
+</div>
+<div class="clear"></div>
+<table  class="table fullwidth colorswitch">
+	<tr>
+		<th style="width:16px">&nbsp;</th>
+		<th style="width:200px">
+			<a href="manage_itempools.php{SID}&amp;sort=0.0" class="down_arrow_green"></a>
+			<a href="manage_itempools.php{SID}&amp;sort=0.1" class="up_arrow_green"></a>
+			{L_name}
+		</th>
+		<th class="hiddenSmartphone">
+			<a href="manage_itempools.php{SID}&amp;sort=1.0" class="down_arrow_green"></a>
+			<a href="manage_itempools.php{SID}&amp;sort=1.1" class="up_arrow_green"></a>
+			{L_description}
+		</th>
+	</tr>
+	<!-- BEGIN itempools -->
+	<tr>
+		<td style="width:16px"><a href="manage_itempools.php{SID}&amp;upd=true&amp;id={itempools.ID}"><i class="fa fa-pencil fa-lg" title="{L_edit}"></i></a></td>
+		<td style="width:200px"><a href="manage_itempools.php{SID}&amp;upd=true&amp;id={itempools.ID}">{itempools.NAME}</a></td>
+		<td class="hiddenSmartphone">{itempools.DESC}</td>
+	</tr>
+	<!-- END itempools -->
+</table>
+<!-- ENDIF -->

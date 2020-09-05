@@ -1,0 +1,25 @@
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_monolithimport_export}</h1>
+</div>
+
+
+<form method="post" action="{ACTION}" name="post" enctype="multipart/form-data" class="mybox">
+	<fieldset class="settings smallsettings">
+		<legend>{L_monolithimport_export}</legend>
+		<dl>
+			<dt><label>{L_select_mdkppool}</label></dt>
+			<dd>{MULTIDKPPOOLS}</dd>
+		</dl>
+		
+	</fieldset>
+	<fieldset class="settings smallsettings">
+		<legend>{L_filter}</legend>
+		<dl>
+			<dt><label>{L_rank}</label></dt>
+			<dd>{MS_RANK}</dd>
+		</dl>
+		
+	</fieldset>
+	<button type="submit" name="export"><i class="fa fa-check"></i>{L_submit}</button>
+	{CSRF_TOKEN}
+</form>

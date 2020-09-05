@@ -1,0 +1,52 @@
+
+<form action="{ACTION}" name="post" method="post">
+
+<fieldset class="settings">
+	<legend>{L_mysql_info}</legend>
+	<dl>
+		<dt><label>{L_db_type}</label></dt>
+		<dd>{DB_ENGINE}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_db_version}</label></dt>
+		<dd>{DB_VERSION}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_db_name}</label></dt>
+		<dd>{DB_NAME}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_table_prefix}</label></dt>
+		<dd>{DB_PREFIX}</dd>
+	</dl>
+</fieldset>
+<br />
+<div class="tableHeader">
+	<h2>{L_eqdkp_tables}</h2>
+</div>
+<table class="table fullwidth colorswitch hoverrows">
+  <tr>
+    <th class="left">{L_table_name} ({NUM_TABLES})</th>
+    <th class="nowrap">{L_rows}</th>
+    <th style="width:75px" class="nowrap left">{L_db_engine}</th>
+    <th style="width:75px" class="nowrap left">{L_db_collation}</th>
+    <th class="nowrap left">{L_table_size}</th>
+    <th class="nowrap left">{L_index_size}</th>
+  </tr>
+  <!-- BEGIN table_row -->
+  <tr>
+    <td class="nowrap">{table_row.TABLE_NAME}</td>
+    <td class="nowrap">{table_row.ROWS}</td>
+    <td class="nowrap">{table_row.ENGINE}</td>
+    <td class="nowrap">{table_row.COLLATION}</td>
+    <td class="nowrap">{table_row.TABLE_SIZE}</td>
+    <td class="nowrap">{table_row.INDEX_SIZE}</td>
+  </tr>
+  <!-- END table_row -->
+  <tr>
+    <th colspan="4" class="left"><b>{L_totals}:</b> {TOTAL_SIZE}</th>
+    <th style="width:75px" class="left">{TOTAL_TABLE_SIZE}</th>
+    <th style="width:100px" class="left">{TOTAL_INDEX_SIZE}</th>
+  </tr>
+</table>
+</form>

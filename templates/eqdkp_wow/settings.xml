@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings styleversion="0.0.2">
+	<template_path>eqdkp_wow</template_path>
+	<attendees_columns>6</attendees_columns>
+	<logo_position>left</logo_position>
+	<favicon_img></favicon_img>
+	<banner_img></banner_img>
+	<column_right_width>0px</column_right_width>
+	<column_left_width>0px</column_left_width>
+	<portal_width>0px</portal_width>
+	<background_type>0</background_type>
+	<background_img></background_img>
+	<background_pos>normal</background_pos>
+	<editor_theme>charcoal</editor_theme>
+	
+	<body_background_color>#0a0a0a</body_background_color>
+	<body_font_color>#fff</body_font_color>
+	<body_font_size>13</body_font_size>
+	<body_font_family>Arial, Helvetica, sans-serif</body_font_family>
+	<body_link_color>#0db2fd</body_link_color>
+	<body_link_color_hover>#2f576f</body_link_color_hover>
+	<body_link_decoration>none</body_link_decoration>
+	
+	<container_background_color>rgba(35, 35, 35, 0)</container_background_color>
+	<container_border_color>rgba(75, 74, 77, 0)</container_border_color>
+	<content_background_color>rgba(35, 35, 35, .7)</content_background_color>
+	<content_font_color>#9f9f9f</content_font_color>
+	<content_font_color_headings>#a4c</content_font_color_headings>
+	<content_link_color></content_link_color>
+	<content_link_color_hover></content_link_color_hover>
+	<content_border_color>#4b4a4d</content_border_color>
+	<content_accent_color>#f90</content_accent_color>
+	<content_contrast_color>rgb(238, 238, 238)</content_contrast_color>
+	<content_contrast_background_color>rgba(0, 0, 0, .45)</content_contrast_background_color>
+	<content_contrast_border_color>#4b4a4d</content_contrast_border_color>
+	<content_positive_color>rgb(51, 204, 51)</content_positive_color>
+	<content_negative_color>rgb(226, 59, 48)</content_negative_color>
+	<content_neutral_color>rgb(153, 153, 153)</content_neutral_color>
+	<content_highlight_color>#fc0</content_highlight_color>
+	
+	<userarea_background_color>rgba(35, 35, 35, 0.8)</userarea_background_color>
+	<userarea_font_color>#4b4a4d</userarea_font_color>
+	<userarea_link_color>#999</userarea_link_color>
+	<userarea_link_color_hover>#fff</userarea_link_color_hover>
+	
+	<table_th_background_color></table_th_background_color>
+	<table_th_font_color>#fff</table_th_font_color>
+	<table_tr_font_color></table_tr_font_color>
+	<table_tr_background_color1>rgba(0, 0, 0, 0)</table_tr_background_color1>
+	<table_tr_background_color2>rgba(255, 255, 255, 0.02)</table_tr_background_color2>
+	<table_tr_background_color_hover></table_tr_background_color_hover>
+	<table_border_color></table_border_color>
+	
+	<menu_background_color>rgba(0, 0, 0, .7)</menu_background_color>
+	<menu_font_color>#eee</menu_font_color>
+	<menu_item_background_color>rgba(0, 0, 0, .9)</menu_item_background_color>
+	<menu_item_background_color_hover>rgba(35, 35, 35, .9)</menu_item_background_color_hover>
+	<menu_item_font_color_hover>#fff</menu_item_font_color_hover>
+	
+	<sidebar_background_color>rgba(0, 0, 0, .5)</sidebar_background_color>
+	<sidebar_font_color>#e7e6e6</sidebar_font_color>
+	<sidebar_border_color>#4b4a4d</sidebar_border_color>
+	
+	<button_background_color>#ffcf0f</button_background_color>
+	<button_font_color>#0a0a0a</button_font_color>
+	<button_border_color>#0a0a0a</button_border_color>
+	<button_background_color_hover>#eda600</button_background_color_hover>
+	<button_font_color_hover>#0a0a0a</button_font_color_hover>
+	<button_border_color_hover>#0a0a0a</button_border_color_hover>
+	
+	<input_background_color>rgba(0, 0, 0, .45)</input_background_color>
+	<input_border_color>#4b4a4d</input_border_color>
+	<input_font_color>#eee</input_font_color>
+	<input_background_color_active>rgba(0, 0, 0, .45)</input_background_color_active>
+	<input_border_color_active>#ffc107</input_border_color_active>
+	<input_font_color_active>#fff</input_font_color_active>
+	
+	<misc_color1>#ffc107</misc_color1>
+	<misc_color2></misc_color2>
+	<misc_color3></misc_color3>
+	<misc_text1></misc_text1>
+	<misc_text2></misc_text2>
+	<misc_text3></misc_text3>
+	<additional_less></additional_less>
+</settings>

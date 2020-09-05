@@ -1,0 +1,70 @@
+
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {L_profilefields_help}
+</div>
+<br />
+
+<form method="post" action="{F_PAGE_MANAGER}" name="post">
+	<fieldset class="settings">
+		<legend>{L_manage_profilefields}</legend>
+		<dl>
+			<dt><label>{L_id}:</label></dt>
+			<dd><input type="hidden" name="id" value="{ID}" /><input name="name" type="text" class="input" value="{NAME_ID}" size="100" required /></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_name}:</label></dt>
+			<dd><input name="language" type="text" class="input" value="{LANGUAGE}" size="100" required /></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_type}:</label></dt>
+			<dd>{TYPE_DD}</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_category}:</label></dt>
+			<dd>{CATEGORY_DD} <input name="new_category" id="new_category" type="text" class="input" value="" size="40" disabled/></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_field_length}:</label></dt>
+			<dd><input name="size" type="text"  class="input" id="size" value="{SIZE}" size="4" maxlength="4" /></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_profilefield_image}:</label><br /><span>{L_IMAGE_NOTE}</span></dt>
+			<dd><input name="image" type="text"  class="input" id="image" value="{IMAGE}" size="100" /></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_options_language}:</label><br /><span>{L_options_language_help}</span></dt>
+			<dd><input name="options_language" type="text" class="input" value="{OPTIONS_LANGUAGE}" size="100" /></dd>
+		</dl>
+	</fieldset>
+	
+	<fieldset class="settings" {S_SHOW_OPTIONS} id="options_row">
+		<legend>{L_profilefield_optionen}</legend>
+		<dl>
+			<dt><label>{L_profilefield_optionen}:</label></dt>
+			<dd id="new_options">
+				<!-- BEGIN options_row -->
+					{L_ID}: <input type="text" value="{options_row.ID}" name="option_id[]" class="input" style="width:33%"/> {L_name}: <input type="text" value="{options_row.LANGUAGE}" name="option_lang[]" class="input" style="width:33%" /><br />
+				<!-- END options_row -->
+				<span>
+					{L_ID}: <input type="text" value="" name="option_id[]" class="input" style="width:33%" /> {L_name}: <input type="text" value="" name="option_lang[]" class="input" style="width:33%"/><i class="fa fa-plus fa-lg hand" id="addopt_icon"></i><br />
+				</span>
+			</dd>
+		</dl>
+	</fieldset>
+	<div class="contentFooter">
+		<button class="mainoption" name="add" type="submit" id="add"><i class="fa fa-check"></i>{L_save}</button>
+		<button class="liteoption" name="cancel" type="submit" id="cancel"><i class="fa fa-chevron-left"></i>{L_cancel}</button>
+	</div>
+{CSRF_TOKEN}
+</form>
+
+<script>
+function handle_profilecategories(val){
+	if(val == '-'){
+		$('#new_category').removeAttr('disabled');
+	} else {
+		
+		$('#new_category').attr('disabled', true).val('');
+	}
+}
+</script>

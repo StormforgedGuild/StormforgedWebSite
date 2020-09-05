@@ -1,0 +1,17 @@
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_gr_myapplications}</h1>
+</div>
+<form method="post" action="{ACTION}" name="post">
+	<button type="submit" name="mark_all_read" class="floatRight"><i class="fa fa-check-square-o"></i>{L_gr_mark_all_as_read}</button>
+	<div class="clear"></div>
+	
+	<table class="table fullwidth colorswitch  scrollable-x">
+		{PAGE_OUT}
+	</table>
+	<div class="center pagination_wrapper">
+		{GR_PAGINATION}
+	</div>
+	
+	<div class="clear"></div>
+{CSRF_TOKEN}
+</form>

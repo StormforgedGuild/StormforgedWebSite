@@ -1,0 +1,121 @@
+<!-- IF S_PERM_RAID_ADMIN -->
+<div class="floatRight">
+<i class="hand fa fa-lg fa-pencil" onclick="editRaid()" title="{L_raidevent_raid_edit}"></i>
+</div>
+<!-- ENDIF -->
+<div class="contentHeader">
+	<h1 class="contentTitle">{EVENT_ICON} {EVENT_NAME}, {RAID_DATE}</h1>
+</div>
+
+	<fieldset class="settings smallsettings raidcal_infos toggle_container">
+		<dl>
+			<dt><label>{L_added_by}</label></dt>
+			<dd>{RAID_ADDED_BY}
+			</dd>
+		</dl>
+		<!-- IF S_RAID_UPDATED -->
+		<dl>
+			<dt><label>{L_updated_by}</label></dt>
+			<dd>{RAID_UPDATED_BY}
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+		<dl>
+			<dt><label>{L_note}</label></dt>
+			<dd>{RAID_NOTE}
+			</dd>
+		</dl>
+		<!-- IF not S_POINTS_DISABLED -->
+		<dl>
+			<dt><label>{DKP_NAME} {L_value}</label></dt>
+			<dd><span class="positive">{RAID_VALUE}</span>
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+		<!-- IF S_ADDITIONAL_DATA -->
+		<dl>
+			<dt><label>{L_additional_infos}</label></dt>
+			<dd>{RAID_ADDITIONAL_DATA}
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+		<!-- LISTENER viewraid_fieldset -->
+	</fieldset>
+
+<br />
+<!-- LISTENER viewraid_beforetables -->
+<div class="tableHeader raid-attendees">
+	<h2>{L_attendees} <span class="bubble">{ATTENDEES_COUNT}</span></h2>
+</div>
+<div class="raid-attendees grid" style="overflow:hidden;">
+  <!-- BEGIN attendees_row -->
+  <div class="col2">
+  {attendees_row.MEMBERLINK}
+  </div>
+  <!-- END attendees_row -->
+</div>
+<br />
+
+<div class="tableHeader raid-items">
+	<h2>{L_items} <span class="bubble">{ITEM_COUNT}</span></h2>
+</div>
+<table class="table fullwidth hptt colorswitch scrollable-x raid-items">
+{ITEM_OUT}
+</table>
+
+<br />
+
+<!-- IF S_ADJUSTMENTS -->
+	<div class="tableHeader raid-adjustments">
+		<h2>{L_tab_adjustments}  <span class="bubble">{ADJUSTMENT_COUNT}</span></h2>
+	</div>
+	<table class="table fullwidth hptt colorswitch scrollable-x raid-adjustments">
+	{ADJUSTMENT_OUT}
+	</table>
+	<br />
+<!-- ENDIF -->
+
+<table class="table fullwidth raid-distributions">
+  <tr>
+    <th class="center raid-class_distribution_chart">{L_class_distribution}</th>
+    <th class="center raid-loot_distribution_chart">{L_loot_distribution}</th>
+  </tr>
+ <tr>
+ <td class="row2" class="center">
+  {CLASS_PERCENT_CHART}
+ </td>
+ <td class="row2" class="center">
+  {LOOT_PERCENT_CHART}
+ </td>
+ </tr>
+</table>
+<br />
+<div class="tableHeader raid-class_distribution">
+	<h2>{L_class_distribution}</h2>
+</div>
+<table class="table fullwidth raid-class_distribution">
+  <tr>
+    <th class="left" style="width:100px">{L_class}</th>
+    <th class="w49p left">{L_percent}</th>
+    <th class="w50p left">{L_attendees}</th>
+  </tr>
+  <!-- BEGIN class_row -->
+  <tr>
+    <td class="row2 nowrap">{class_row.CLASS}</td>
+    <td class="row1">{class_row.BAR}</td>
+    <td class="row2"><span class="small">{class_row.ATTENDEES}</span></td>
+  </tr>
+  <!-- END class_row -->
+</table>
+<br/>
+<!-- LISTENER viewraid_aftertables -->
+
+<div class="contentFooter">
+	<button class="mainoption" type="button" onclick="window.location='{U_RAIDLIST}'"><i class="fa fa-chevron-left"></i>{L_back}</button>
+</div>
+
+<style>
+.raid-attendees.grid > div {
+	padding: 5px;
+}
+</style>

@@ -1,0 +1,153 @@
+
+<form method="post" action="{ACTION}" name="post">
+<div class="contentHeader">
+	<h1 class="contentTitle"><!-- IF S_IS_SEARCH -->{L_manage_users_search}<!-- ELSE -->{L_manage_users}<!-- ENDIF --> <span class="bubble">{LISTUSERS_COUNT}</span></h1>
+</div>
+<div class="tableHeader floatRight">
+	<button class="mainoption" type="button" name="search" onclick="window.location.href='{U_MANAGE_USERS}search'"><i class="fa fa-search"></i>{L_manage_users_search}</button>
+	<button class="mainoption" type="button" name="create" onclick="window.location.href='{U_MANAGE_USERS}u=0'"><i class="fa fa-plus"></i>{L_user_creation}</button>
+</div>
+
+	<div class="center pagination_wrapper">
+			{USER_PAGINATION}
+	</div>
+	<div class="clear"></div>
+	<table class="table fullwidth colorswitch hoverrows">
+		<tr>
+			<th style="width:25px" class="nowrap center"><input type="checkbox" id="selall_user" name="all_nr" value="all_nr" /></th>
+			<th colspan="8" class="left">{L_action}</th>
+			<th class="left" colspan="1">
+				<a href="{U_MANAGE_USERS}o=0.0"><span class="down_arrow{RED00}"></span></a><a href="{U_MANAGE_USERS}o=0.1"><span class="up_arrow{RED01}"></span></a>
+				<a href="{U_MANAGE_USERS}o={O_USERNAME}">{L_username}</a>
+			</th>
+			<!-- IF not S_DISABLE_GUILD_FEATURES -->
+			<th style="width:35%" class="left hiddenSmartphone">{L_associated_members}</th>
+			<!-- ENDIF -->
+			<th style="width:100px" class="hiddenSmartphone nowrap left">
+				<a href="{U_MANAGE_USERS}o=1.0"><span class="down_arrow{RED10}"></span></a><a href="{U_MANAGE_USERS}o=1.1"><span class="up_arrow{RED11}"></span></a>
+				<a href="{U_MANAGE_USERS}o={O_EMAIL}">{L_email_address}</a>
+			</th>
+			<th style="width:150px" class="left hiddenSmartphone"><a href="{U_MANAGE_USERS}o=4.0"><span class="down_arrow{RED40}"></span></a><a href="{U_MANAGE_USERS}o=4.1"><span class="up_arrow{RED41}"></span></a>
+				<a href="{U_MANAGE_USERS}o={O_REG_DATE}">{L_registered_at}</a></th>
+			<th style="width:150px" class="left hiddenSmartphone">
+				<a href="{U_MANAGE_USERS}o=2.0"><span class="down_arrow{RED20}"></span></a><a href="{U_MANAGE_USERS}o=2.1"><span class="up_arrow{RED21}"></span></a>
+				<a href="{U_MANAGE_USERS}o={O_LAST_VISIT}">{L_last_visit}</a>
+			</th>
+			<!-- IF not S_DISABLE_GUILD_FEATURES -->
+			<th style="width:40px" class="hiddenSmartphone left">
+				<a href="{U_MANAGE_USERS}o=5.0"><span class="down_arrow{RED50}"></span></a><a href="{U_MANAGE_USERS}o=5.1"><span class="up_arrow{RED51}"></span></a>
+				<a href="{U_MANAGE_USERS}o={O_AWAY}"><i class="fa fa-suitcase"></i></a>
+			</th>
+			<!-- ENDIF -->
+		</tr>
+		<!-- BEGIN users_row -->
+		<tr>
+			<td style="width:25px" class="nowrap left"><!-- IF not users_row.PROTECT_SUPERADMIN --><input type="checkbox" name="user_id[]" value="{users_row.USER_ID}" id="user_id_{users_row.USER_ID}"/><!-- ENDIF --></td>
+			<td style="width:20px"><a href="{users_row.U_MANAGE_USER}" title="{L_edit}"><i class="fa fa-pencil fa-lg" title="{L_edit}"></i></a></td>
+			<td style="width:20px"><!-- IF not users_row.PROTECT_SUPERADMIN and S_PERM_PERMISSION --><a href="{users_row.U_OVERTAKE_PERMS}" title="{L_user_overtake_perms}"><i class="fa fa-user fa-lg"></i></a><!-- ENDIF --></td>
+			<td style="width:20px"><a href="{users_row.U_RESOLVE_PERMS}" title="{L_user_resolve_perms}"><i class="fa fa-shield fa-lg"></i></a></td>
+			<td style="width:20px"><!-- IF not users_row.PROTECT_SUPERADMIN -->{users_row.ACTIVATE_ICON}<!-- ENDIF --></td>
+			<td style="width:20px"><!-- IF not users_row.PROTECT_SUPERADMIN -->{users_row.EMAIL_CONFIRM}<!-- ENDIF --></td>
+			<td style="width:20px"><!-- IF not users_row.PROTECT_SUPERADMIN -->
+				<a href="javascript:delete_single_warning('{users_row.USER_ID}')" title="{L_delete_user}"><i class="fa fa-trash-o fa-lg"></i></a>    	<!-- ENDIF -->
+			</td>
+			<td style="width:20px"><a href="{users_row.U_DOWNLOAD_GDPR}" title="{L_user_download_gdpr}"><i class="fa fa-lg fa-download"></i></a></td>
+			<td style="width:20px">{users_row.ADMIN_ICON}</td>
+			<td><a href="{users_row.U_MANAGE_USER}" style="{users_row.NAME_STYLE}">{users_row.USERNAME}</a></td>
+
+			<!-- IF not S_DISABLE_GUILD_FEATURES -->
+			<td style="width:35%" class="hiddenSmartphone">
+				<script type="text/javascript">
+				$(function() {
+					$("#memberTTtrigger{users_row.USER_ID}").qtip({
+					content: {
+						text: '<!-- BEGIN members_row --><div>{users_row.members_row.RADIO} {users_row.members_row.CLASS} <span class="hand" onclick="edit_char({users_row.members_row.MEMBER_ID}, {users_row.USER_ID});">{users_row.members_row.NAME}</span> - {users_row.members_row.RANK}</div><!-- END members_row -->',
+						title: {
+							text: "{L_chars}",
+							button: true
+						}
+					},
+					position: {
+						at: "bottom center",
+						my: "top center"
+					},
+					style: {
+						tip: {
+							corner: true,
+							height: 20
+						},
+						widget: true
+					},
+					show: {
+						event: 'click'
+					},
+					hide: {
+						event: 'unfocus'
+					}
+				});
+				});
+
+				</script>
+				<!-- IF users_row.MEMBER_COUNT > 0 -->
+				<a href="javascript:void(0);" id="memberTTtrigger{users_row.USER_ID}">{users_row.MEMBER_COUNT} {L_chars}</a>
+				<!-- ELSE -->
+				{users_row.MEMBER_COUNT} {L_chars}
+				<!-- ENDIF -->
+			</td>
+			<!-- ENDIF -->
+			<td style="width:100px" class="hiddenSmartphone nowrap left"><a href="mailto:{users_row.EMAIL}">{users_row.EMAIL}</a></td>
+			<td style="width:150px" class="hiddenSmartphone">{users_row.REG_DATE}</td>
+			<td style="width:150px" class="hiddenSmartphone">{users_row.LAST_VISIT}</td>
+			<!-- IF not S_DISABLE_GUILD_FEATURES -->
+			<td style="width:60px" class="hiddenSmartphone center">{users_row.AWAY}</td>
+			<!-- ENDIF -->
+		</tr>
+		<!-- END users_row -->
+	</table>
+	<div class="center pagination_wrapper">
+			{USER_PAGINATION}
+	</div>
+	<div class="contentFooter">
+		{BUTTON_MENU}
+		<div class="clear"></div>
+		<input type="hidden" name="del_assocmem" value="0" id="del_assocmem" />
+		<input type="hidden" name="del" value="1" disabled="disabled" id="mass_del_submit" />
+	</div>
+{CSRF_TOKEN}
+</form>
+
+<script type="text/javascript">
+function edit_char(charid, userid){
+	$("#memberTTtrigger"+userid).qtip('hide');
+	EditChar(charid);
+}
+
+function handle_assoc_members(){
+	if ($('input[name=delete_associated_members]').is(':checked')){
+		$('#del_assocmem').val('1');
+	} else {
+		$('#del_assocmem').val('0');
+	}
+}
+
+function delete_single(id){
+	$('input:checkbox[name="user_id[]"]').prop('checked', false);
+	if ($('input[name=delete_associated_members_single]').is(':checked')){
+		$('#del_assocmem').val('1');
+	} else {
+		$('#del_assocmem').val('0');
+	}
+	$('#user_id_'+id).prop('checked', true);
+	$('#mass_del_submit').removeAttr('disabled');
+	$('form:has(#mass_del_submit)').submit();
+}
+
+
+function change_mainchar(userid, memberid){
+	$.post('{SID}&link_hash={CSRF_MAINCHARCHANGE}', { maincharchange: memberid, user: userid },
+		function(data){
+			system_message($.trim(data), 'success');
+		}
+	);
+}
+</script>

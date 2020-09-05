@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="template" version="2.3.0.32">
+	<folder>eqdkp_wow</folder>
+	<name>EQdkp WoW</name>
+	<author>Asitara</author>
+	<authorEmail>majsterofdesaster@online.de</authorEmail>
+	<creationDate>1573823767</creationDate>
+	<copyright>(C)2016 Asitara</copyright>
+	<version>0.0.2</version>
+	<level>stable</level>
+</install>

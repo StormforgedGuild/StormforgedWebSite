@@ -1,0 +1,46 @@
+
+<!-- IF not S_POINTS_DISABLED -->
+<form method="post" action="{ACTION}" name="post">
+<fieldset class="settings smallsettings">
+	<legend><!-- IF REASON == '' -->{L_add_adjustment}<!-- ELSE -->{L_editing_adj}<!-- ENDIF --></legend>
+	<dl>
+		<dt><label>{L_reason}:</label></dt>
+		<dd><input type="text" name="reason" value="{REASON}" class="input" size='60' id="reason" /></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_value}:</label></dt>
+		<dd><input type="text" name="value" value="{VALUE}" class="input" size='60' id="value" /></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_raid}:</label></dt>
+		<dd>{RAID}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_event}:</label></dt>
+		<dd>{EVENT}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_date}:</label></dt>
+		<dd>{DATE}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_members}:</label></dt>
+		<dd>{MEMBERS}</dd>
+	</dl>
+
+</fieldset>
+<div class="contentFooter">
+	<!-- IF S_COPY -->
+	<input type="hidden" name="copy" value="1" />
+	<!-- ENDIF -->
+	<button class="mainoption" type="submit" name="save"><i class="fa fa-check"></i>{L_save}</button>
+	<button class="liteoption" type="button" name="del" onclick="delete_warning('{GRP_KEY}');"><i class="fa fa-times"></i>{L_delete}</button>
+	<button class="mainoption" type="button" name="" onclick="window.location.href='manage_adjustments.php{SID}'"><i class="fa fa-chevron-left"></i>{L_cancel}</button>
+</div>
+{CSRF_TOKEN}
+</form>
+<!-- ELSE -->
+<div class="infobox infobox-large infobox-red clearfix">
+	<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> {L_disabled_points_info}
+</div>
+<!-- ENDIF -->

@@ -1,0 +1,45 @@
+
+<!-- IF S_VALUE_TOO_SHORT -->
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {L_search_value_too_short}
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_SEARCHED and not S_RESULTS -->
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {L_NO_RESULTS}
+</div>
+<!-- ENDIF -->
+
+<form method="post" action="{ACTION}">
+	<fieldset class="settings">
+		<h1>{L_search}</h1>
+		<dl>
+			<dt><label>{L_search_value}</label><br /><span>{L_search_value_note}</span></dt>
+			<dd><input type="text" class="input" size="30" name="svalue" value="{SEARCH_VALUE}" /></dd>
+		</dl>
+	</fieldset>
+	<button type="submit" name="search" class="mainoption"><i class="fa fa-search"></i>{L_search_do}</button>
+	{CSRF_TOKEN}
+</form>
+
+<!-- IF S_RESULTS -->
+<h2>{L_SEARCH_RESULTS}</h2>
+<div id="search_result_tabs">
+		<ul>
+			<!-- BEGIN tabs --> <li><a href='#fragment-{tabs.ID}'><span>{tabs.NAME} ({tabs.COUNT})</span></a></li><!-- END tabs -->
+		</ul>
+		
+		<!-- BEGIN tabs -->
+		<div id="fragment-{tabs.ID}">
+			<table class="table fullwidth colorswitch hoverrows scrollable-x">
+			<tr><th colspan="2">{L_search_results_category} "{tabs.NAME}" ({tabs.COUNT}) </th></tr>
+			<!-- BEGIN results -->
+				<tr><td style="width:20px" class="nowrap"><a href="{tabs.results.LINK}">{tabs.results.ID}</a></td><td><a href="{tabs.results.LINK}">{tabs.results.NAME}</a></td></tr>
+			<!-- END results -->
+			</table>
+		</div>
+		<!-- END tabs -->
+
+</div>
+<!-- ENDIF -->

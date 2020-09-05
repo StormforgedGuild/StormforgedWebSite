@@ -1,0 +1,23 @@
+<IfModule !mod_authz_core.c>
+<IfModule mod_authz_host.c>
+	<Files "*.*">
+	Deny from all
+	</Files>
+
+	<FilesMatch "\.(js)$">
+	Allow from all
+	</FilesMatch>
+</IfModule>
+</IfModule>
+
+<IfModule mod_authz_core.c>
+	
+	<Files "*.*">
+	Require all denied
+	</Files>
+
+	<FilesMatch "\.(js)$">
+	Require all granted
+	</FilesMatch>
+	
+</IfModule>

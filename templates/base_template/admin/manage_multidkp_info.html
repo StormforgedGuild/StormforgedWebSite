@@ -1,0 +1,67 @@
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_manmdkp_info}: {MDKP_NAME}</h1>
+</div>
+
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {L_manmdkp_info_calcinfo}
+</div>
+
+
+<!-- IF S_MDKP_EVENTS -->
+<h2>{L_events}</h2>
+<div class="infobox infobox-large infobox-blue clearfix">
+	{L_manmdkp_info_events}
+</div>
+<table class="table fullwidth colorswitch">
+<!-- BEGIN event_row -->
+	<tr><td><a href="{event_row.LINK}">{event_row.NAME}</a></td></tr>
+	<!-- END event_row -->
+</table>
+<!-- ENDIF -->
+
+
+
+<!-- IF S_MDKP_ITEMPOOLS AND not S_DKP_EASYMODE -->
+<h2>{L_itempool}</h2>
+<div class="infobox infobox-large infobox-blue clearfix">
+	{L_manmdkp_info_itempools}
+</div>
+<table class="table fullwidth colorswitch">
+<!-- BEGIN itempool_row -->
+	<tr><td><a href="{itempool_row.LINK}">{itempool_row.NAME}</a></td></tr>
+	<!-- END event_row -->
+</table>
+<!-- ENDIF -->
+
+
+<!-- IF S_MDKP_APA -->
+<h2>{L_manage_auto_points}</h2>
+<div class="infobox infobox-large infobox-blue clearfix">
+	{L_manmdkp_info_apa}
+</div>
+<table class="table fullwidth colorswitch">
+<!-- BEGIN apa_row -->
+	<tr><td><a href="{apa_row.LINK}">{apa_row.NAME}</a> ({apa_row.ADDITION})</td></tr>
+	<!-- END apa_row -->
+</table>
+<!-- ENDIF -->
+
+<h2>{L_twinks}</h2>
+<div class="infobox infobox-large infobox-blue clearfix">
+<!-- IF S_MDKP_TWINKS -->
+	{L_manmdkp_info_with_twinks}
+<!-- ELSE -->
+	{L_manmdkp_info_without_twinks}
+<!-- ENDIF -->	
+</div>
+
+<h2>{L_manmdkp_info_pointsystem}</h2>
+<div class="infobox infobox-large infobox-blue clearfix">
+	{L_manmdkp_info_pointsystem_info}
+</div>
+<table class="table fullwidth colorswitch">
+	<tr><td><b>{L_manmdkp_info_pointsystem}: {MDKP_LAYOUT}</b></td><td><span style="font-style: italic;">({MDKP_LAYOUT_INFO})</span></td></tr>
+	<!-- BEGIN preset_row -->
+	<tr><td>{preset_row.NAME}</td><td>{preset_row.ADDITION}</td></tr>
+	<!-- END preset_row -->
+</table>

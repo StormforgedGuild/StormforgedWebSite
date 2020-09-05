@@ -1,0 +1,82 @@
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {L_discord_f_help_bot_token}
+</div>
+<br />
+<form name="sb_settings" action="{ACTION}" method="post">
+	<!-- BEGIN fieldsets -->
+	<fieldset class="settings">
+		<legend>{fieldsets.NAME}</legend>
+
+		<!-- BEGIN fields -->
+		<dl>
+			<dt><label>{fieldsets.fields.NAME}</label><br /><span>{fieldsets.fields.HELP}</span></dt>
+			<dd>{fieldsets.fields.FIELD}{fieldsets.fields.TEXT}</dd>
+		</dl>
+		<!-- END fields -->
+	</fieldset>
+	<!-- END fieldsets -->
+	
+{CSRF_TOKEN}
+
+<div class="contentFooter">
+	<button class="mainoption" type="submit" name="save" ><i class="fa fa-check"></i>{L_save}</button>
+	<button class="liteoption" type="reset" name="reset"><i class="fa fa-trash-o"></i>{L_reset}</button>
+</div>
+</form>
+
+<script>
+function init_functions(){
+	authorizebot();
+	checkguildid();
+}
+
+function checkguildid(){
+	if($('#guild_id').val() == ""){
+		$.get('settings.php{SID}&ajaxguildid', function(data) {
+		    // Now that we've completed the request schedule the next one.
+		    
+		    if(data && data != ""){
+		    	$('#guild_id').val(data);
+		    }
+		    
+		    
+		    if($('#guild_id').val() == "") {
+		    	setTimeout(checkguildid, 5000);
+		    }
+		  });
+	}
+}
+
+function authorizebot(){
+	$.get('https://discordapp.com/api/gateway', function(data) {
+	    // Now that we've completed the request schedule the next one.
+	    
+	    if(data && data != ""){	    	
+	    	var connection = new WebSocket(data.url+'?v=6&encoding=json');
+	    	
+	    	var token = $('#bot_token').val();
+
+	    	// When the connection is open, send some data to the server
+			connection.onopen = function () {
+			  connection.send('{"op": 2,"d": {"token": "'+ token +'","properties": {"$os": "linux","$browser": "EQdkp Plus","$device": "EQdkp Plus"}}}');
+			};
+
+			// Log errors
+			connection.onerror = function (error) {
+			  console.log('WebSocket Error ' + error);
+			};
+
+			// Log messages from the server
+			connection.onmessage = function (e) {
+			  console.log('Server: ' + e.data);
+			};
+
+			connection.onclose = function (e) {
+			  console.debug('Server close: ' + e);
+			};
+	    }
+});
+
+}
+
+</script>

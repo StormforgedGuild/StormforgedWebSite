@@ -1,0 +1,35 @@
+
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_manage_cronjobs} <span class="bubble">{CRONJOB_COUNT}</span></h1>
+</div>
+<table class="table fullwidth colorswitch hoverrows">
+	<tr>
+		<th class="left" style="width:25px">&nbsp;</th>
+		<th class="nowrap left" style="width:70px">{L_action}</th>
+		<th class="left">{L_name}</th>
+		<th class="hiddenSmartphone left">{L_repeat_interval}</th>
+		<th class="hiddenSmartphone left">{L_cron_start_time}</th>
+		<th class="hiddenSmartphone left">{L_last_run}</th>
+		<th class="hiddenSmartphone left">{L_next_run}</th>
+	</tr>
+	<!-- BEGIN cron_row -->
+	<tr>
+		<td style="width:25px" class="center"><i class="eqdkp-icon-{cron_row.ENABLE_ICON}"></i></td>
+		<td style="width:70px" class="nowrap"><a href="{cron_row.U_RUN_CRON}" title="{L_execute}"><i class="fa fa-play fa-lg"></i></a>&nbsp;&nbsp;&nbsp;<!-- IF cron_row.S_ACTIVATE --><a href="{cron_row.U_ACTIVATE_CRON}" title="{cron_row.L_ENABLE}"><i class="{cron_row.ACTIVATE_ICON} fa-lg"></i></a><!-- ENDIF --><!-- IF cron_row.S_EDITABLE -->&nbsp;&nbsp;&nbsp;<a href="{cron_row.U_EDIT_CRON}" title="{L_edit}"><i class="fa fa-pencil fa-lg" title="{L_edit}"></i></a><!-- ENDIF --></td>
+		<td><!-- IF cron_row.S_EDITABLE --><a href="{cron_row.U_EDIT_CRON}">{cron_row.NAME}</a><!-- ELSE -->{cron_row.NAME}<!-- ENDIF --></td>
+		<td class="hiddenSmartphone">{cron_row.REPEAT}</td>
+		<td class="hiddenSmartphone">{cron_row.START}</td>
+		<td class="hiddenSmartphone">{cron_row.LAST_RUN}</td>
+		<td class="hiddenSmartphone">{cron_row.NEXT_RUN}</td>
+	</tr>
+	<!-- END cron_row -->
+	<tr >
+		<th colspan="7" class="footer">{FC_CRONJOBS}</th>
+	</tr>
+</table>
+
+<div id="dialog-cronresult" title="" style="display:none;">
+		<div id="dialog-cronresult-content">
+			
+		</div>
+</div>

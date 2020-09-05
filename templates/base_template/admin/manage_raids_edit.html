@@ -1,0 +1,350 @@
+
+<script type="text/javascript">
+	function loadEventValue(event_id){
+		$.get("manage_raids.php{SID}", { raidvalue: "1", event: event_id }, function(data){
+			$("#raid_value").val($.trim(data));
+		});
+		
+		//Get default itempool
+		$.get("manage_raids.php{SID}", { defitempool: "1", event: event_id }, function(data){
+			if($.trim(data) != "0") {
+				new_itempool_option = data;
+				$('#itempool_id').val(new_itempool_option);
+			}
+		});
+		
+	}
+	<!-- IF S_EVENTVAL_ONLOAD -->
+	$(function(){
+		loadEventValue($("#event").val());
+	});
+	<!-- ENDIF -->
+
+	function delete_row(obj){
+		$(obj).parent().parent().remove();
+	}
+
+	function delete_adj(obj, id){
+		$(obj).parent().find("input[type='checkbox']").prop("checked", true);
+		$(obj).parent().parent().hide();
+		var value = $("#del_adjustments").val();
+		$("#del_adjustments").val(value+","+id);
+	}
+
+	function delete_item(obj, id){
+		$(obj).parent().find("input[type='checkbox']").prop("checked", true);
+		$(obj).parent().parent().hide();
+		var value = $("#del_items").val();
+		$("#del_items").val(value+","+id);
+	}
+
+	var auto_adj_reason = {ADJ_REASON_AUTOCOMPLETE};
+	var adj_key = {ADJ_KEY};
+	$(function(){
+		$('#add-adjustment-btn').on('click', function(){
+			add_adjustment();
+		});
+	});
+	
+	function add_adjustment(){
+		var event = $('#event').val();
+		$('#event_KEY').val(event);
+
+		var new_row = $('#template-adjustments>tbody').html()+"";
+		new_row = new_row.replace(/KEY/g, adj_key);
+
+		$('.add_adjustment_container').append(new_row);
+		$('#event_'+adj_key).val(event);
+		$('#adjs_'+adj_key+'_members').parent().find('.ui-multiselect').remove();
+		$("#adjs_"+adj_key+"_members").multiselect({height: 200,minWidth: 250,selectedList: 5,multiple: true}).multiselectfilter({label: "{L_filter}"});
+
+		$("#adjs_"+adj_key).autocomplete({
+			source: auto_adj_reason
+		});
+
+		adj_key++;
+	}
+	
+	function copy_adjustment(obj){
+		add_adjustment();
+		
+		var mynewkey = adj_key-1;
+		var mynewobj = $('#adjs_' + mynewkey).parent().parent();
+		
+		value = $(obj).parent().parent().find('.adj_reason').val();
+		$(mynewobj).find('.adj_reason').val(value);
+		
+		value = $(obj).parent().parent().find('.adj_event').val();
+		$(mynewobj).find('.adj_event').val(value);
+		
+		value = $(obj).parent().parent().find('.adj_value').val();
+		$(mynewobj).find('.adj_value').val(value);
+		
+		value = $(obj).parent().parent().find('.adj_members').val();
+		$("#adjs_"+mynewkey+"_members").val(value);
+		$("#adjs_"+mynewkey+"_members").multiselect("destroy").multiselectfilter("destroy");
+		$("#adjs_"+mynewkey+"_members").multiselect({height: 200,minWidth: 250,selectedList: 5,multiple: true}).multiselectfilter({label: "Filter:"});
+	}
+	
+
+	var auto_itemname = {ITEM_AUTOCOMPLETE};
+	var item_key = {ITEM_KEY};
+	$(function(){
+		$('#add-item-btn').on('click', function(){
+			add_item();
+		});
+	});
+	
+	function add_item(){
+		var new_row = $('#template-items>tbody').html()+"";
+		new_row = new_row.replace(/KEY/g, item_key);
+
+		$('.add_item_container').append(new_row);
+
+		$('#items_'+item_key+'_members').parent().find('.ui-multiselect').remove();
+		$("#items_"+item_key+"_members").multiselect({height: 200,minWidth: 250,selectedList: 5,multiple: true}).multiselectfilter({label: "{L_filter}"});
+
+		$("#items_"+item_key).autocomplete({
+			source: auto_itemname
+		});
+		<!-- IF not S_DKP_EASYMODE -->
+		if(new_itempool_option > 0) $('#itempool_id_'+item_key).val(new_itempool_option);
+		<!-- ENDIF -->
+		item_key++;
+	}
+	
+	function copy_item(obj){
+		add_item();
+		var mynewkey = item_key-1;
+		var mynewobj = $('#items_' + mynewkey).parent().parent();
+
+		//now copy values
+		amount = $(obj).parent().parent().find('.item_amount').val();
+		$(mynewobj).find('.item_amount').val(amount);
+		
+		value = $(obj).parent().parent().find('.item_value').val();
+		$(mynewobj).find('.item_value').val(value);
+		
+		value = $(obj).parent().parent().find('.item_itempool').val();
+		$(mynewobj).find('.item_itempool').val(value);
+		
+		value = $(obj).parent().parent().find('.item_itemid').val();
+		$(mynewobj).find('.item_itemid').val(value);
+		
+		value = $(obj).parent().parent().find('.item_name').val();
+		$(mynewobj).find('.item_name').val(value);
+		
+		value = $(obj).parent().parent().find('.item_members').val();
+		$("#items_"+mynewkey+"_members").val(value);
+		$("#items_"+mynewkey+"_members").multiselect("destroy").multiselectfilter("destroy");;
+		$("#items_"+mynewkey+"_members").multiselect({height: 200,minWidth: 250,selectedList: 5,multiple: true}).multiselectfilter({label: "Filter:"});
+	}
+
+	var show_additional = {ADDITIONAL_INFOS};
+	$(function(){
+		if(show_additional){
+			$('.additional-note-btn').hide();
+		} else {
+			$('.additional-note-container').hide();
+		}
+
+		$('.additional-note-btn').on('click', function(){
+			$('.additional-note-container').show();
+			$(this).hide();
+		});
+	});
+	<!-- IF not S_DKP_EASYMODE -->
+	var event_itempool_mapping = {EVENT_ITEMPOOL_MAPPING};
+	var new_itempool_option = event_itempool_mapping[{FIRST_EVENT_ID}];
+	$(function(){
+		$('#event').on('change', function(){
+			var myval = $('#event').val();
+			new_itempool_option = event_itempool_mapping[myval];
+			if(!new_itempool_option) new_itempool_option = 0;
+		});
+	});
+	<!-- ENDIF -->
+</script>
+<form action='{ACTION}' method='post' name='post'>
+<div id="toggleRaidInfos">
+	<fieldset class="settings smallsettings">
+	<legend><!-- IF S_RAID_UPD -->{L_editing_raid} <!-- ELSE -->{L_addraid_title}<!-- ENDIF --><span class="toggle_button"></span></legend>
+	<div class="clear"></div>
+	<div class="toggle_container">
+	<!-- IF not S_RAID_UPD -->
+				<dl>
+					<dt><label>{L_select_raid_draft}:</label></dt>
+					<dd>{RAID_DROPDOWN}</dd>
+				</dl>
+	<!-- ENDIF -->
+				<dl>
+					<dt><label>{L_date}:</label></dt>
+					<dd>{DATE}</dd>
+				</dl>
+				<dl>
+					<dt><label>{L_note}:</label></dt>
+					<dd><input type="text" name="rnote" value="{NOTE}" class="input" size="55" id="note" /><button type="button" class="additional-note-btn"><i class="fa fa-plus"></i> {L_additional_infos}</button>
+						<div class="additional-note-container">
+						{ADDITIONAL_INFOS_EDITOR}
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt><label>{L_event}:</label></dt>
+					<dd>{EVENT}
+					<button class="liteoption" type="button" name="addevent" id="r_add_event"><i class="fa fa-plus"></i>{L_add_event}</button></dd>
+				</dl>
+				<!-- IF not S_POINTS_DISABLED -->
+				<dl>
+					<dt><label>{L_value}:</label></dt>
+					<dd><input type="text" name="value" value="{VALUE}" class="input" id="raid_value" /></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF not S_DKP_EASYMODE and S_RAID_UPD and CONNECTED_RAIDS -->
+				<dl>
+					<dt><label>{L_connected_raids}:</label></dt>
+					<dd>{CONNECTED_RAIDS}</dd>
+				</dl>
+				<!-- ENDIF -->
+				
+				<dl>
+					<dt><label>{L_attendees}:</label></dt>
+					<dd>{NEW_MEM_SEL}
+						<button class="liteoption" type="button" name="addmem" id="r_add_mem"><i class="fa fa-plus"></i>{L_add_member}</button>
+					</dd>
+				</dl>
+		</div>
+	</fieldset>
+</div>
+<!-- IF not S_POINTS_DISABLED -->
+<div id="toggleAdjustments" class="panel">
+	<div class="panel-heading">
+		<h3><i class="fa fa-tag fa-lg"></i> {L_adjustments}<span class="toggle_button"></span></h3>
+	</div>
+	<div class="toggle_container">
+		<div class="tableHeader floatRight">
+			<button type="button" name="refresh" class="mainoption" value="{L_add_aadjustment}" id="add-adjustment-btn"><i class="fa fa-plus"></i>{L_add_aadjustment}</button>
+		</div>
+		<div class="clear"></div>
+		<table class="table fullwidth colorswitch">
+			<thead>
+				<tr>
+					<th style="width:25px">&nbsp;</th>
+					<th colspan="2">{L_reason}</th>
+					<th style="width:20%">{L_event}</th>
+					<th style="width:200px">{L_member}</th>
+					<th style="width:120px">{L_value}</th>
+				</tr>
+			</thead>
+			<tbody class="add_adjustment_container">
+				<!-- BEGIN adjs -->
+				<tr>
+					<td style="text-align:center;" width="48px"><i class="fa fa-trash fa-lg hand" onclick="delete_adj(this, {adjs.KEY})"></i><input type="checkbox" name="adjs[{adjs.KEY}][delete]" value="true" class="input" style="display:none;"/>&nbsp;&nbsp;&nbsp;<i class="fa fa-copy fa-lg hand" onclick="copy_adjustment(this)"></i><input type="hidden" name="adjs[{adjs.KEY}][group_key]" value="{adjs.GK}" /></td>
+					<td colspan="2"><input type="text" name="adjs[{adjs.KEY}][reason]" value="{adjs.REASON}" class="input adj_reason" style="width: 97%" id="adjs_{adjs.KEY}" /></td>
+					<td>{adjs.EVENT}</td>
+					<td>{adjs.MEMBER}</td>
+					<td><input type="text" name="adjs[{adjs.KEY}][value]" value="{adjs.VALUE}" class="input adj_value" /></td>
+				</tr>
+				<!-- END adjs -->
+			</tbody>
+		</table>
+	</div>
+
+</div>
+<br />
+<!-- ENDIF -->
+<div id="toggleItems" class="panel">
+	<div class="panel-heading">
+		<h3><i class="fa fa-gift fa-lg"></i> {L_items}<span class="toggle_button"></span></h3>
+	</div>
+	<div class="toggle_container">
+
+		<div class="tableHeader floatRight">
+			<button type="button" name="refresh" class="mainoption" value="{L_add_aitem}" id="add-item-btn"><i class="fa fa-plus"></i>{L_add_aitem}</button>
+		</div>
+		<div class="clear"></div>
+		<table class="table fullwidth colorswitch">
+			<thead>
+				<tr>
+					<th style="width:25px">&nbsp;</th>
+					<th>{L_item}</th>
+					<th>{L_item_id}</th>
+					<!-- IF not S_DKP_EASYMODE -->
+					<th style="width:20%">{L_itempool}</th>
+					<!-- ENDIF -->
+					<th style="width:200px">{L_member}</th>
+					<!-- IF not S_POINTS_DISABLED -->
+					<th style="width:120px">{L_value}</th>
+					<!-- ENDIF -->
+					<!-- IF not S_RAID_UPD -->
+					<th style="width:50px">{L_amount}</th>
+					<!-- ENDIF -->
+				</tr>
+			</thead>
+			<tbody class="add_item_container">
+				<!-- BEGIN items -->
+				<tr>
+					<td style="text-align:center;" width="48px"><i class="fa fa-trash fa-lg hand" onclick="delete_item(this, {items.KEY})"></i> <input type="checkbox" name="items[{items.KEY}][delete]" value="true" class="input" style="display:none;"/>&nbsp;&nbsp;&nbsp;<i class="fa fa-copy fa-lg hand" onclick="copy_item(this)"></i> <input type="hidden" name="items[{items.KEY}][group_key]" value="{items.GK}" /></td>
+					<td><input type="text" name="items[{items.KEY}][name]" value="{items.NAME}" class="input item_name" id="items_{items.KEY}" style="width: 95%"/></td>
+					<td><input type="text" name="items[{items.KEY}][itemid]" value="{items.ITEMID}" class="input item_itemid" style="width: 95%" /></td>
+					<!-- IF not S_DKP_EASYMODE -->
+					<td>{items.ITEMPOOL}</td>
+					<!-- ENDIF -->
+					<td>{items.MEMBER}</td>
+					<!-- IF not S_POINTS_DISABLED -->
+					<td><input type="text" name="items[{items.KEY}][value]" value="{items.VALUE}" class="input item_value" /></td>
+					<!-- ENDIF -->
+				</tr>
+				<!-- END items -->
+			</tbody>
+		</table>
+
+	</div>
+</div>
+<br />
+<div class="contentFooter">
+	<input type="hidden" name="raid_id" value="{RAID_ID}" />
+	<input type="hidden" name="caldata_import" value="{S_CALDATAIMPORT}" />
+	<button class="mainoption" type="submit" name="save" id="save_button"><i class="fa fa-check"></i>{L_RAID_SAVE}</button>
+	<!-- IF S_COPY -->
+	<input type="hidden" name="copy" value="1" />
+	<!-- ENDIF -->
+	<!-- IF S_RAID_UPD -->
+	<button class="mainoption" type="button" name="del" onclick="delete_warning();"><i class="fa fa-times"></i>{L_delete_raid}</button>
+	<!-- ENDIF -->
+	<!-- IF S_NORMAL_HEADER -->
+	<button class="mainoption" type="submit" name="cancel"><i class="fa fa-chevron-left"></i>{L_cancel}</button>
+	<!-- ENDIF -->
+	<input type="submit" name="refresh" class="mainoption bi_ok" id="refresh_button" style="display:none;"/>
+	<input type="hidden" name="del" value="1" disabled="disabled" id="mass_del_submit" />
+</div>
+{CSRF_TOKEN}
+</form>
+
+<table id="template-adjustments" style="display:none;">
+	<tr>
+		<td style="text-align:center;" width="48px"><i class="fa fa-trash fa-lg hand" onclick="delete_row(this)"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-copy fa-lg hand" onclick="copy_adjustment(this)"></i> <input type="hidden" name="adjs[KEY][group_key]" value="new" /></td>
+		<td colspan="2"><input type="text" name="adjs[KEY][reason]" value="" class="input adj_reason" style="width: 97%" id="adjs_KEY" /></td>
+		<td>{EVENT_DROPDOWN}</td>
+		<td>{MEMBER_DROPDOWN}</td>
+		<td><input type="text" name="adjs[KEY][value]" value="" class="input adj_value" /></td>
+	</tr>
+</table>
+
+<table id="template-items" style="display:none;">
+	<tr>
+		<td style="text-align:center;" width="48px"><i class="fa fa-trash fa-lg hand" onclick="delete_row(this)"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-copy fa-lg hand" onclick="copy_item(this)"></i> <input type="hidden" name="items[KEY][group_key]" value="new" /></td>
+		<td><input type="text" name="items[KEY][name]" value="" class="input item_name" style="width: 95%" id="items_KEY"/></td>
+		<td><input type="text" name="items[KEY][itemid]" value="" class="input item_itemid" style="width: 95%" /></td>
+		<!-- IF not S_DKP_EASYMODE -->
+		<td>{ITEMPOOL_DROPDOWN}</td>
+		<!-- ENDIF -->
+		<td>{MEMBER_ITEM_DROPDOWN}</td>
+		<!-- IF not S_POINTS_DISABLED -->
+		<td><input type="text" name="items[KEY][value]" value="" class="input item_value" /></td>
+		<!-- ENDIF -->
+		<!-- IF not S_RAID_UPD -->
+		<td><input type="text" name="items[KEY][amount]" value="1" class="input item_amount" size="3" /></td>
+		<!-- ENDIF -->
+	</tr>
+</table>

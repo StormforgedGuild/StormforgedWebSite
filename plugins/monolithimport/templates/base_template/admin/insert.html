@@ -1,0 +1,90 @@
+<div class="contentHeader">
+	<h1 class="contentTitle">{L_monolithimport_import}</h1>
+</div>
+
+
+<form method="post" action="{ACTION}" name="post" enctype="multipart/form-data" class="mybox">
+	<fieldset class="settings smallsettings">
+		<legend>{L_monolithimport_import}</legend>
+		<dl>
+			<dt><label>{L_event}</label></dt>
+			<dd>{EVENTS}</dd>
+		</dl>
+		<!-- IF not S_DKP_EASYMODE -->
+		<dl>
+			<dt><label>{L_itempool}</label></dt>
+			<dd>{ITEMPOOLS}</dd>
+		</dl>
+		<!-- ENDIF -->
+		<dl>
+			<dt><label>DKPTable.xml *</label></dt>
+			<dd><textarea name="log" rows="10" id="log" style="width: 99%" class="post" required></textarea></dd>
+		</dl>
+		<dl>
+			<dt><label>DKPHistory.xml</label></dt>
+			<dd><textarea name="dkphistory" rows="10" id="dkphistory" style="width: 99%" class="post" ></textarea></dd>
+		</dl>
+		<dl>
+			<dt><label>LootHistory.xml</label></dt>
+			<dd><textarea name="loothistory" rows="10" id="loothistory" style="width: 99%" class="post" ></textarea></dd>
+		</dl>		
+	</fieldset>
+	<button type="submit" name="insert"><i class="fa fa-check"></i>{L_submit}</button>
+	{CSRF_TOKEN}
+</form>
+
+<script>
+//DRag & Drop
+$(function(){
+	var isAdvancedUpload = function() {
+	  var div = document.createElement('div');
+	  return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+	}();
+		
+	var $form = $('.mybox');
+	
+	if (isAdvancedUpload) {
+	  $form.addClass('has-advanced-upload');
+	}
+	
+	$('.mybox').on('dragover', function(evt){
+	  evt.preventDefault();
+	}).on('dragover dragenter', function() {
+		$form.addClass('is-dragover');
+	  })
+	  .on('dragleave dragend drop', function() {
+		$form.removeClass('is-dragover');
+	  })
+	
+	$('.mybox').on('drop', function(evt){
+	  evt.preventDefault();
+	  var files = evt.originalEvent.dataTransfer.files;
+	  var myfile = files[0];
+	  var filename = myfile.name.toLowerCase();
+	  if(filename.includes('dkptable')){
+		  var target = $('#log');
+	  } else if(filename.includes('loothistory')){
+		  var target = $('#loothistory');
+	  } else if(filename.includes('dkphistory')){
+		  var target = $('#dkphistory');
+	  } else {
+		  var target = false;
+	  }
+	  
+	  var oFReader = new FileReader();
+		oFReader.readAsText(myfile);
+		oFReader.onload = function (oFREvent) {
+			if(target){
+				target.val(oFREvent.target.result);
+			}
+	};
+	  
+	});
+})
+</script>
+<style>
+.mybox.is-dragover textarea {
+	background: #ddd;
+	border: 2px dashed #000 !important;
+}
+</style>

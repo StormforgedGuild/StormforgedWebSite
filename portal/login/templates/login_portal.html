@@ -1,0 +1,82 @@
+<div class="portal-login">
+		<!-- IF not S_LOGGED_IN -->
+	
+		<form method="post" action="{EQDKP_CONTROLLER_PATH}Login{SEO_EXTENSION}{SID}" name="login" class="fv_checkit">
+			<div>
+				<div class="input-icon">
+							<i class="fa fa-user"></i><input type="text" name="username" size="20" maxlength="30" class="input username" id="username" placeholder="{L_username}" required />
+				</div>
+			</div>
+			<div>
+				<div class="input-icon">
+					<i class="fa fa-key"></i>
+					<input type="password" name="password" pattern=".{3,}" size="20" maxlength="32" class="input password" id="password" placeholder="{L_password}" required />
+				</div>
+				<input type="hidden" name="auto_login" value="1" checked/>
+			</div>
+			<input type="text" name="{HONEYPOT_VALUE}" size="30" maxlength="30" class="userpass" />
+			<button type="submit" name="login" class="mainoption"><i class="fa fa-sign-in"></i> {L_login}</button>
+		</form>
+		
+		<!-- IF U_REGISTER != "" --><hr /><div class="register-link">{U_REGISTER}</div><!-- ENDIF -->
+		
+		<!-- IF AUTH_LOGIN_BUTTON != "" -->
+		<div>
+			<hr />
+			{AUTH_LOGIN_BUTTON}
+		</div>
+		<!-- ENDIF -->
+		
+		<!-- ELSE -->
+		<ul>
+									<li>
+										<a href="{U_USER_PROFILE}">
+											<div class="user-tooltip-avatar user-avatar-smallest">
+												<img src="{USER_AVATAR}" alt="{USER_NAME}" class="user-avatar user-avatar-smallest"/>
+											</div>
+											<div class="user-tooltip-name">
+												<span class="bold">{USER_NAME}</span>
+											</div>
+										</a>
+										<div class="clear"></div>
+									</li>
+
+									<li><a href="{EQDKP_CONTROLLER_PATH}Notifications{SEO_EXTENSION}{SID}"><i class="fa fa-bell fa-lg"></i> {L_notifications}
+													<span class="bubble-red notification-bubble-red" <!-- IF NOTIFICATION_COUNT_RED == 0 -->style="display:none;"<!-- ENDIF --> >{NOTIFICATION_COUNT_RED}</span>
+													<span class="bubble-yellow notification-bubble-yellow" <!-- IF NOTIFICATION_COUNT_YELLOW == 0 -->style="display:none;"<!-- ENDIF -->>{NOTIFICATION_COUNT_YELLOW}</span>
+													<span class="bubble-green notification-bubble-green" <!-- IF NOTIFICATION_COUNT_GREEN == 0 -->style="display:none;"<!-- ENDIF -->>{NOTIFICATION_COUNT_GREEN}</span>
+												</a></li>
+									
+									
+									<!-- BEGIN user_tooltip_addition -->
+									<li class="{user_tooltip_addition.CLASS}">{user_tooltip_addition.TEXT}</li>
+									<!-- END user_tooltip_addition -->
+									<!-- IF USER_IS_AWAY -->
+									<li class="user_tooltip_awaymode"><a href="{EQDKP_CONTROLLER_PATH}Settings{SEO_EXTENSION}{SID}#fragment-calendar"><i class="fa fa-suitcase fa-lg"></i> {L_calendar_user_is_away}</a></li>
+									<!-- ENDIF -->
+									<li><a href="{U_USER_PROFILE}"><i class="fa fa-user fa-lg"></i> {L_my_profile}</a></li>
+									<li><a href="{EQDKP_CONTROLLER_PATH}Settings{SEO_EXTENSION}{SID}"><i class="fa fa-cog fa-lg"></i> {L_settings}</a></li>
+									<!-- IF U_CHARACTERS != "" --><li><a href="{U_CHARACTERS}"><i class="fa fa-group fa-lg"></i> {L_menu_members}</a></li><!-- ENDIF -->
+									
+									
+									<!-- IF S_ADMIN -->
+									<li><a href="{EQDKP_ROOT_PATH}admin/{SID}"><i class="fa fa-cog fa-lg"></i> {L_menu_admin_panel}</a></li>
+									<!-- ENDIF -->
+									<li><a href="{U_LOGOUT}"><i class="fa fa-sign-out fa-lg"></i> {L_logout}</a></li>
+								</ul>
+		<!-- ENDIF -->
+</div>
+<style>
+.portal-login li {
+	padding: 5px;
+}
+
+.portal-login input{
+	width: calc(100% - 50px);
+}
+
+.portal-login button {
+	width: 95%;
+}
+</style>
+		

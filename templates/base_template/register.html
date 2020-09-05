@@ -1,0 +1,363 @@
+<!-- IF S_LICENCE -->
+<form action="{ACTION}" method="post">
+	<div class="content">
+		<div class="contentHead">
+			<h2 class="pageTitle">{HEADER}</h2>
+		</div>
+		<div class="contentInner row1">
+			{TEXT}
+		</div>
+		<br />
+		<div class="contentFooter">
+			<button class="mainoption" type="submit" name="{SUBMIT_BUTTON}"><i class="fa fa-check"></i>{L_accept}</button>
+			<button class="liteoption" type="submit" name="deny"><i class="fa fa-times"></i>{L_deny}</button>
+		</div>
+	</div>
+{CSRF_TOKEN}
+</form>
+<!-- ELSE -->
+<script language="JavaScript" type="text/javascript">
+//<![CDATA[
+$(function() {
+	//Try to detect the Timezone
+	try {
+		var user_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		if (user_timezone) { $('#user_timezone').val(user_timezone).change(); }
+	}  catch (e) {
+		//Do nothing
+	}
+	
+	$('#username').change(function() {
+		var username = $(this).val();
+		if(username.length > 0){
+			$.post("{EQDKP_CONTROLLER_PATH}Register/{SID}&ajax=1{AJAXEXTENSION_USER}", { username: username }, function(result){
+				if($.trim(result) == 'true'){
+					$("#error_username").hide();
+					$("#tick_username").show();
+				}else{
+					errortext	= $("#error_username").html();
+					$('#error_username').html(errortext.replace(new RegExp("\\{0\\}", "g"), username));
+					$("#tick_username").hide();
+					$("#error_username").show();
+				}
+			});
+		}else{
+			$("#tick_username").hide();
+			$("#error_username").hide();
+		}
+	});
+
+	$('#useremail').change(function() {
+		var user_email = $(this).val();
+		if(user_email.length > 0){
+			$.post("{EQDKP_CONTROLLER_PATH}Register/{SID}&ajax=1{AJAXEXTENSION_USER}", { user_email: user_email }, function(result){
+				if($.trim(result) == 'true'){
+					$("#error_email").hide();
+					$("#tick_mail").show();
+				}else{
+					errortext	= $("#error_email").html();
+					$('#error_email').html(errortext.replace(new RegExp("\\{0\\}", "g"), user_email));
+					$("#tick_mail").hide();
+					$("#error_email").show();
+				}
+			});
+		}else{
+			$("#tick_mail").hide();
+			$("#error_email").hide();
+		}
+	});
+});
+
+<!-- IF S_TRIGGER_FORMCHANGE -->
+$(function() {
+	$('#username').trigger('change');
+	$('#useremail').trigger('change');
+	$('#register').trigger('submit');
+});
+<!-- ENDIF -->
+
+//]]>
+</script>
+
+<div class="content">
+<!-- IF AUTH_REGISTER_BUTTON != "" -->
+<fieldset class="settings">
+	<legend>{L_register_use_authmethods}</legend>
+	{AUTH_REGISTER_BUTTON}
+</fieldset>
+<br />
+<!-- ENDIF -->
+
+<form method="post" action="{ACTION}" name="register" id="register" class="{FORMCLASS} fv_checkit">
+
+		<input type="hidden" name="old_username" value="{USERNAME}" />
+
+		<div id="account">
+			<fieldset class="settings">
+				<legend>{L_user_sett_tab_registration_info}</legend>
+
+				<dl>
+					<dt>
+						<label class="required">{L_username}</label><br /><span>{L_register_help_username}</span>
+					</dt>
+					<dd>
+						<input type="text" name="username" id="username" size="30" maxlength="30" value="{USERNAME}" class="input required" data-fv-message="{L_fv_required_user}" required />
+						<i class="fa fa-check fa-lg icon-color-green" id="tick_username" style="display:none;"></i>
+						<span id="error_username" class="input-error-message" style="display:none;"><i class="fa fa-exclamation-triangle fa-lg"></i> {L_fv_username_alreadyuse}</span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label class="required">{L_email_address}</label><br /><span>{L_register_help_email}<br/>{VALID_EMAIL_INFO}</span>
+					</dt>
+					<dd>
+						<input type="email" name="user_email" size="30" maxlength="100" value="{USER_EMAIL}" id="useremail" class="input" data-fv-message="{L_fv_required}" required />
+						<i class="fa fa-check fa-lg icon-color-green" id="tick_mail" style="display:none;" ></i>
+						<span id="error_email" class="input-error-message" style="display:none;"><i class="fa fa-exclamation-triangle fa-lg"></i> {L_fv_email_alreadyuse}</span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label class="required">{L_email_confirm}</label><br /><span>{L_register_help_email_confirm}</span>
+					</dt>
+					<dd>
+						<input name="user_email2" type="email" class="input equalto" id="user_email2" value="{USER_EMAIL2}" size="30" maxlength="100" data-equalto="useremail" data-fv-message="{L_fv_required}" required/>
+						<span class="input-error-message" style="display:none;"><i class="fa fa-exclamation-triangle fa-lg"></i> {L_fv_email_not_match}</span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label class="required">{L_password}</label><br /><span></span>
+					</dt>
+					<dd>
+						<input type="password" id="password1" name="new_user_password1" size="30" maxlength="100" value="" class="input" required pattern=".{{PASSWORD_LENGTH},}" data-fv-message="{L_fv_required_password}" />
+						<div id="complexity" class="default"></div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label class="required">{L_confirm_password}</label>
+						<br />
+						<span>{L_confirm_password_repeat_note}</span>
+					</dt>
+					<dd>
+						<input type="password" id="password2" name="new_user_password2" size="30" maxlength="100" value="" class="input equalto" data-equalto="password1" data-fv-message="{L_fv_required_password}" required/>
+						<span class="input-error-message" style="display:none;"><i class="fa fa-exclamation-triangle fa-lg"></i> {L_fv_required_password_repeat}</span>
+					</dd>
+				</dl>
+				<!-- IF S_IS_CONNECTED_AUTH_ACCOUNT -->
+				<dl>
+					<dt>
+						<label>{L_reg_connected_account}</label>
+						<br />
+						<span>{L_reg_connected_account_help}</span>
+					</dt>
+					<dd>
+						{REG_CONNECTED_METHOD}
+					</dd>
+				</dl>
+				<!-- ENDIF -->
+			</fieldset>
+
+		</div>
+
+		<!-- IF S_PROFILEFIELDS -->
+		<div id="profilefields">
+			<fieldset class="settings">
+				<legend>{L_user_sett_fs_profile}</legend>
+				<!-- BEGIN fields -->
+				<dl>
+					<dt><label>{fields.NAME}</label><br /><span>{fields.HELP}</span></dt>
+					<dd>{fields.FIELD}</dd>
+				</dl>
+				<!-- END fields -->
+			</fieldset>
+		</div>
+		<!-- ENDIF -->
+
+		<div id="view">
+			<fieldset class="settings">
+				<legend>{L_user_sett_tab_view_options}</legend>
+				<dl>
+					<dt>
+						<label>{L_language}</label><br /><span>{L_register_help_language}</span>
+					</dt>
+					<dd>{DD_LANGUAGE}</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label>{L_user_timezones}</label><br /><span>{HELP_TIMEZONES}</span>
+					</dt>
+					<dd>{DD_TIMEZONES}<input type="text" name="{HONEYPOT_VALUE}" size="30" maxlength="30" class="userpass" autocomplete="new-password" /></dd>
+				</dl>
+			</fieldset>
+		</div>
+	<!-- IF S_DISPLAY_CATPCHA -->
+	<div id="captcha">
+		<fieldset class="settings">
+			<legend>{L_lib_captcha_head}</legend>
+			{CAPTCHA}
+		</fieldset>
+	</div>
+	<!-- ENDIF -->
+		<div class="contentFooter">
+			<button class="" type="submit" name="submit"><i class="fa fa-check"></i>{L_submit}</button>
+			<button class="" type="reset" name="reset"><i class="fa fa-trash-o" onclick="reset_validator_register();"></i>{L_reset}</button>
+		</div>
+
+	{HIDDEN_FIELDS}
+	{CSRF_TOKEN}
+</form>
+</div>
+<!-- ENDIF -->
+
+
+<script>
+/*
+ * --------------------------------------------------------------------
+ * Simple Password Strength Checker
+ * by Siddharth S, www.ssiddharth.com, hello@ssiddharth.com
+ * for Net Tuts, www.net.tutsplus.com
+ * Version: 1.0, 05.10.2009 	
+ * --------------------------------------------------------------------
+ */
+
+$(document).ready(function() 
+{
+	var strPassword;
+	var charPassword;
+	var complexity = $("#complexity");
+	var minPasswordLength = {PASSWORD_LENGTH};
+	var baseScore = 0, score = 0;
+	
+	var num = { };
+	num.Excess = 0;
+	num.Upper = 0;
+	num.Numbers = 0;
+	num.Symbols = 0;
+
+	var bonus = { };
+	bonus.Excess = 3;
+	bonus.Upper = 4;
+	bonus.Numbers = 5;
+	bonus.Symbols = 5;
+	bonus.Combo = 0; 
+	bonus.FlatLower = 0;
+	bonus.FlatNumber = 0;
+	
+	outputResult();
+	$("#password1").bind("keyup", checkVal);
+	var w = $("#password1").width();
+	complexity.width(w);
+
+function checkVal()
+{
+	init();
+	
+	if (charPassword.length >= minPasswordLength)
+	{
+		baseScore = 50;	
+		analyzeString();	
+		calcComplexity();		
+	}
+	else
+	{
+		baseScore = 0;
+	}
+	
+	outputResult();
+}
+
+function init()
+{
+	strPassword= $("#password1").val();
+	charPassword = strPassword.split("");
+		
+	num.Excess = 0;
+	num.Upper = 0;
+	num.Numbers = 0;
+	num.Symbols = 0;
+	bonus.Combo = 0; 
+	bonus.FlatLower = 0;
+	bonus.FlatNumber = 0;
+	baseScore = 0;
+	score =0;
+}
+
+function analyzeString ()
+{	
+	for (i=0; i<charPassword.length;i++)
+	{
+		if (charPassword[i].match(/[A-Z]/g)) {num.Upper++;}
+		if (charPassword[i].match(/[0-9]/g)) {num.Numbers++;}
+		if (charPassword[i].match(/(.*[!,@,#,$,%,^,&,*,?,_,~])/)) {num.Symbols++;} 
+	}
+	
+	num.Excess = charPassword.length - minPasswordLength;
+	
+	if (num.Upper && num.Numbers && num.Symbols)
+	{
+		bonus.Combo = 25; 
+	}
+
+	else if ((num.Upper && num.Numbers) || (num.Upper && num.Symbols) || (num.Numbers && num.Symbols))
+	{
+		bonus.Combo = 15; 
+	}
+	
+	if (strPassword.match(/^[\sa-z]+$/))
+	{ 
+		bonus.FlatLower = -15;
+	}
+	
+	if (strPassword.match(/^[\s0-9]+$/))
+	{ 
+		bonus.FlatNumber = -35;
+	}
+}
+	
+function calcComplexity()
+{
+	score = baseScore + (num.Excess*bonus.Excess) + (num.Upper*bonus.Upper) + (num.Numbers*bonus.Numbers) + (num.Symbols*bonus.Symbols) + bonus.Combo + bonus.FlatLower + bonus.FlatNumber;
+	
+}	
+	
+function outputResult()
+{
+	if ($("#password1").val()== "")
+	{ 
+		complexity.html("").removeClass("weak strong stronger strongest").addClass("default");
+	}
+	else if (charPassword.length < minPasswordLength)
+	{
+		complexity.html("At least " + minPasswordLength+ " characters please!").removeClass("strong stronger strongest").addClass("weak");
+	}
+	else if (score<50)
+	{
+		complexity.html("Weak!").removeClass("strong stronger strongest").addClass("weak");
+	}
+	else if (score>=50 && score<75)
+	{
+		complexity.html("Average!").removeClass("stronger strongest").addClass("strong");
+	}
+	else if (score>=75 && score<100)
+	{
+		complexity.html("Strong!").removeClass("strongest").addClass("stronger");
+	}
+	else if (score>=100)
+	{
+		complexity.html("Secure!").addClass("strongest");
+	}
+
+}
+
+}
+); 
+</script>
+<style>
+#complexity{padding: 8px;}
+.weak{background-color: #FF5353;}
+.strong{background-color: #FAD054;}
+.stronger{background-color: #93C9F4; }
+.strongest{background-color: #B6FF6C;}
+</style>

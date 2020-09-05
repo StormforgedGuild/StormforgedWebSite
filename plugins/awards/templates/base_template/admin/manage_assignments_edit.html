@@ -1,0 +1,31 @@
+
+<!-- IF AID -->
+<div class="infobox infobox-large infobox-red clearfix">
+	<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> {L_aw_upd_assignment_warning}
+</div>
+<!-- ENDIF -->
+
+<form method="post" action="{ACTION}" name="post">
+<fieldset class="settings smallsettings">
+	<legend><!-- IF AID -->{L_aw_edit_assignment}<!-- ELSE -->{L_aw_add_assignment}<!-- ENDIF --></legend>
+	<dl>
+		<dt><label>{L_aw_achievement}:</label></dt>
+		<dd>{DD_ACHIEVEMENT}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_date}:</label></dt>
+		<dd>{DATE}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_members}:</label></dt>
+		<dd>{MEMBERS}</dd>
+	</dl>
+</fieldset>
+
+<div class="contentFooter">
+	<button class="mainoption" type="submit" name="save"><i class="fa fa-check"></i>{L_save}</button>
+	<input type="hidden" name="aid" value="{AID}" />
+	<button class="mainoption" type="button" name="" onclick="window.location.href='{EQDKP_ROOT_PATH}plugins/awards/admin/manage_assignments.php{SID}'"><i class="fa fa-chevron-left"></i>{L_cancel}</button>
+</div>
+{CSRF_TOKEN}
+</form>
