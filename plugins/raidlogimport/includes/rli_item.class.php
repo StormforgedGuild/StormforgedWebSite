@@ -125,14 +125,6 @@ class rli_item extends gen_class {
 			$members['bank'] = 'bank';
 			$this->member->check_special('bank');
 		}
-		if(empty($this->toignore) || !in_array('unassigned', $this->toignore)) {
-			$members['unassigned'] = 'unassigned';
-			$this->member->check_special('unassigned');
-		}
-		if(empty($this->toignore) || !in_array('pug', $this->toignore)) {
-			$members['pug'] = 'pug';
-			$this->member->check_special('pug');
-		}
 		ksort($members);
 		$members = array_merge(array($this->user->lang('rli_choose_mem')), $members);
 		$itempools = $this->pdh->aget('itempool', 'name', 0, array($this->pdh->get('itempool', 'id_list')));

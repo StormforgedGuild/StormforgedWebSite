@@ -46,7 +46,7 @@ class rli_import extends page_generic {
 			'checkitem'	=> array('process' => 'process_items'),
 			'save_itempools' => array('process' => 'itempool_save'),
 			'checkadj'	=> array('process' => 'process_adjustments'),
-			'viewall'	=> array('process' => 'insert_log'),
+			'viewall'	=> array('process' => 'process_views'),
 			'insert'	=> array('process' => 'insert_log'),
 			'eventvalue'=> array('process'	=> 'ajax_eventvalue'),
 			'bossvalues'=> array('process'	=> 'ajax_bossvalues'),
@@ -247,7 +247,7 @@ class rli_import extends page_generic {
 	}
 	
 	public function process_views() {
-		
+			
 		$this->member->display();
 		$this->raid->display();
 		$this->item->display();
@@ -270,7 +270,6 @@ class rli_import extends page_generic {
 				],
 			'display'           => true)
 		);
-	
 	}
 
 	public function insert_log() {
