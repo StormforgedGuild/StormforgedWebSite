@@ -46,7 +46,7 @@ class rli_import extends page_generic {
 			'checkitem'	=> array('process' => 'process_items'),
 			'save_itempools' => array('process' => 'itempool_save'),
 			'checkadj'	=> array('process' => 'process_adjustments'),
-			'viewall'	=> array('process' => 'process_views'),
+			'viewall'	=> array('process' => 'insert_log'),
 			'insert'	=> array('process' => 'insert_log'),
 			'eventvalue'=> array('process'	=> 'ajax_eventvalue'),
 			'bossvalues'=> array('process'	=> 'ajax_bossvalues'),
