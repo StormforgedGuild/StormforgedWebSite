@@ -197,6 +197,7 @@ class listrequests_pageobject extends pageobject
         } else {
             // archive is not active so only one (combined) list
             $view_list = $this->pdh->get('guildrequest_requests', 'id_list', array(false, !$this->user->check_auth('u_guildrequest_view_closed', false)));
+            $view_list_archive = array();
         }
 
         

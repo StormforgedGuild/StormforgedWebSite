@@ -175,16 +175,6 @@ class addrequest_pageobject extends pageobject {
 		return;
 	}
 	
-
-	
-	//Hook for checking values
-	$arrHookResult = $this->hooks->process('gr_addrequest_formcheck', array('name' => $strName, 'email' => $strEmail, 'auth_key' => $strAuthKey, 'data' => $arrToSave), true);
-	if(isset($arrHookResult['error']) && $arrHookResult['error'] !== false){
-		$this->core->message($arrHookResult['error'], $this->user->lang('error'), 'red');
-		$this->display();
-		return;
-	}
-	
 	//Insert into DB
 	if($this->user->is_signedin()){
 		$arrInput['name']['input'] = $this->user->data['username'];
@@ -199,6 +189,14 @@ class addrequest_pageobject extends pageobject {
 	$arrToSave = array();
 	foreach($arrInput as $val){
 		$arrToSave[$val['id']] = $val['input'];
+	}
+	
+	//Hook for checking values
+	$arrHookResult = $this->hooks->process('gr_addrequest_formcheck', array('name' => $strName, 'email' => $strEmail, 'auth_key' => $strAuthKey, 'data' => $arrToSave), true);
+	if(isset($arrHookResult['error']) && $arrHookResult['error'] !== false){
+	    $this->core->message($arrHookResult['error'], $this->user->lang('error'), 'red');
+	    $this->display();
+	    return;
 	}
 	
 	$strContent = serialize($arrToSave);
@@ -373,7 +371,7 @@ class addrequest_pageobject extends pageobject {
 			$selected = isset($this->data[$row['id']]) ? unserialize($this->data[$row['id']]['input']) : array();
 			
 			foreach($row['options'] as $val){
-				$field .= (new hcheckbox('gr_field_'.$row['id'].'['.trim($val).']', array('options' => array(1 => trim($val)), 'value' => (isset($selected[trim($val)]) ? $selected[trim($val)] : ''))))->output().'&nbsp;&nbsp;&nbsp;';
+				$field .= (new hcheckbox('gr_field_'.$row['id'].'['.trim($val).']', array('options' => array(1 => trim($val)), 'value' => (isset($selected[trim($val)]) ? $selected[trim($val)] : ''))))->output();
 			}
 			
 
@@ -480,9 +478,16 @@ class addrequest_pageobject extends pageobject {
   	$arrTypes = $this->pdh->aget('guildrequest_fields', 'type', 0, array( $this->pdh->get('guildrequest_fields', 'id_list', array())));
 
   	if ($row['dep_field'] == 999999999){
-		$expr = html_entity_decode($row['dep_value']);
+		$expr = html_entity_decode($row['dep_value'], ENT_QUOTES);
+				
+		$expr = preg_replace("/[^a-zA-Z0-9=&|?\"'\[\]() ]/", "", $expr);
 		
-		$expr = preg_replace("/[^a-zA-Z0-9=&|?\"'() ]/", "", $expr);
+		$expr = preg_replace_callback("#FIELD([0-9]*)\[(.*)\]#U", function ($treffer) {
+			$t2 = str_replace('"', '\"', $treffer[2]);
+			return "field_data[\"gr_field_".$treffer[1]."[".$t2."]\"]";
+			
+		}, $expr);
+		
 		$expr = preg_replace("#FIELD([0-9]*)#", "field_data[\"gr_field_$1\"]", $expr);
   		
   		$this->tpl->assign_block_vars("gr_listener_row", array(

@@ -135,7 +135,7 @@ class guildrequestForm extends page_generic {
 		}
 		
 		$this->tpl->assign_vars(array(
-			'KEY'		=> max($arrFields)+1,
+		    'KEY'		=> (count($arrFields)) ? (max($arrFields)+1) : 1,
 			'TYP_DD'	=> (new hdropdown('field[KEY][type]', array('options' => $this->user->lang('gr_types'), 'class' => 'gr_type', 'js' => 'onchange="type_change_listener(this)"')))->output(),
 		));
 		
