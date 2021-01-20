@@ -27,7 +27,7 @@ if(!class_exists('wowclassic')) {
 	class wowclassic extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '1.1.6';
+		public $version				= '1.1.7';
 		protected $this_game		= 'wowclassic';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
@@ -1040,17 +1040,17 @@ if(!class_exists('wowclassic')) {
 								'type' 		=> 'dropdown',
 								'options'	=> array(
 										'en_US' => 'English',
-										'es_MX' => 'Mexican',
-										'pt_BR' => 'Brasil',
-										'en_GB' => 'English (GB)',
-										'es_ES' => 'Spanish',
-										'fr_FR' => 'French',
-										'ru_RU' => 'Russian',
+										'en_GB' => 'English (Great Britain)',
 										'de_DE'	=> 'German',
-										'pt_PT'	=> 'Portuguese',
+										'es_MX' => 'Spanish (Mexico)',
+										'es_ES' => 'Spanish (Spain)',
+										'pt_BR' => 'Portuguese',
+										'fr_FR' => 'French',
+										'it_IT' => 'Italian',
+										'ru_RU' => 'Russian',
 										'ko_KR'	=> 'Korean',
-										'zh_TW'	=> 'Taiwanese',
-										'zh_CN'	=> 'Chinese'
+										'zh_TW'	=> 'Chinese (Traditional)',
+										'zh_CN'	=> 'Chinese (Simplified)',
 								),
 						),
 						'game_importer_clientid' => array(
@@ -1096,6 +1096,18 @@ if(!class_exists('wowclassic')) {
 						
 						$this->{$type}[$lang] = $this->lang_file[$lang][$type.'_'.$strExtension];
 
+					} elseif($type == 'professions') {
+					    $strExtension = $this->config->get('uc_wow_extension');
+					    if (! $strExtension || $strExtension == "") {
+					        $this->{$type}[$lang] = $this->lang_file[$lang][$type];
+					        unset($this->lang_file[$lang][$type]['inv_inscription_tradeskill01']);
+					        unset($this->lang_file[$lang][$type]['inv_misc_gem_01']);
+					        unset(  $this->{$type}[$lang]['inv_inscription_tradeskill01']);
+					        unset(  $this->{$type}[$lang]['inv_misc_gem_01']);
+					    } else {
+					        $this->{$type}[$lang] = $this->lang_file[$lang][$type];
+					    }
+					    
 					} else {
 						$this->{$type}[$lang] = $this->lang_file[$lang][$type];
 					}
