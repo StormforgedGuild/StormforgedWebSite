@@ -133,7 +133,7 @@ class character_pageobject extends pageobject {
 			// common data
 			'DATA_GUILDTAG'			=> $this->config->get('guildtag'),
 			'CHARDATA_NAME'			=> $member_name,
-			'CHAR_LOADOUT'          => "https://ironforge.pro/?player=".$member_name."-Kirtonos",
+			'CHAR_LOADOUT'          => "https://ironforge.pro/?player=".$member_name."-Earthfury",
 			'S_CHARDATA_PICTURE'	=> ($this->pdh->get('member', 'picture', array($this->url_id)) != "") ? true : false,
 			'CHARDATA_PICTURE'		=> $this->pdh->geth('member', 'picture', array($this->url_id)),
 			'DATA_CLASSNAME'		=> $this->pdh->get('member', 'classname', array($this->url_id)),
