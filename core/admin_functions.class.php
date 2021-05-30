@@ -266,7 +266,7 @@ class admin_functions extends gen_class {
 				3		=> array('link' => 'admin/manage_multidkp.php'.$this->SID,		'text' => $this->user->lang('manmdkp_title'),		'check' => 'a_event_upd',	'icon' => 'fa-gavel fa-lg fa-fw'),
 				4		=> array('link' => 'admin/manage_itempools.php'.$this->SID,		'text' => $this->user->lang('manitempools_title'),'check' => 'a_event_upd',	'icon' => 'fa-tags fa-lg fa-fw'),
 				5		=> array('link' => 'admin/manage_raid_groups.php'.$this->SID,		'text' => $this->user->lang('manage_raid_groups'),'check' => array('OR', array('a_raidgroups_man', 'a_raidgroups_grpleader')),	'icon' => 'fa-users fa-lg fa-fw'),
-				6		=> array('link' => 'admin/manage_export.php'.$this->SID,		'text' => $this->user->lang('manexport_title'),'check' => 'a_raid_add',	'icon' => 'fa-share-square-o fa-lg fa-fw'),
+				6		=> array('link' => 'admin/manage_export.php'.$this->SID,		'text' => $this->user->lang('manexport_title'),'check' => 'a_export_data',	'icon' => 'fa-share-square-o fa-lg fa-fw'),
 			),
 			'calendar'	=> array(
 				'icon'	=> 'fa-calendar fa-lg fa-fw',
@@ -311,7 +311,7 @@ class admin_functions extends gen_class {
 				'icon'	=> 'fa-cog fa-lg fa-fw',
 				'name'	=> $this->user->lang('menu_maintenance').(($blnShowBadges) ? $coreUpdates : ''),
 				1		=> array('link' => 'maintenance/'.$this->SID,		'text' => $this->user->lang('maintenance'),		'check' => 'a_maintenance',	'icon' => 'fa-cog fa-lg fa-fw'),
-				2		=> array('link' => 'admin/manage_live_update.php'.$this->SID,		'text' => $this->user->lang('liveupdate'),		'check' => 'a_maintenance',	'icon' => 'fa fa-refresh fa-lg fa-fw'),
+				#2		=> array('link' => 'admin/manage_live_update.php'.$this->SID,		'text' => $this->user->lang('liveupdate'),		'check' => 'a_maintenance',	'icon' => 'fa fa-refresh fa-lg fa-fw'),
 				3		=> array('link' => 'admin/manage_backup.php'.$this->SID,			'text' => $this->user->lang('backup'),			'check' => 'a_backup',		'icon' => 'fa-floppy-o fa-lg fa-fw'),
 				4		=> array('link' => 'admin/manage_reset.php'.$this->SID,				'text' => $this->user->lang('consolidate_reset'),			'check' => 'a_reset',	'icon' => 'fa-retweet fa-lg fa-fw'),
 				5		=> array('link' => 'admin/manage_cache.php'.$this->SID,				'text' => $this->user->lang('pdc_manager'),		'check' => 'a_cache_man',	'icon' => 'fa-briefcase fa-lg fa-fw'),
