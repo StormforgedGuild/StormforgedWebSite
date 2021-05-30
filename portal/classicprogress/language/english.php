@@ -1,10 +1,8 @@
 <?php
 /*	Project:			EQdkp-Plus
  *	Package:			classic Progress Module - Portal
- *	CreatorsLink:		https://www.therisingphoenix.eu
- *	Usagelink:			https://www.therisingphoenix.eu
  *
- *	Copyright (C) 2019 Motrish/Quinteras​​​​	
+ *	Copyright (C) 2021 Motrish
  *
  */
 

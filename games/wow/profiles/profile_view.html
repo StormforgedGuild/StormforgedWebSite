@@ -1,0 +1,478 @@
+<!-- IF ARMORY == 1 -->
+	<div>
+		<div class="wow-char-container">
+		<div id="profile">
+			<div id="profile_charicon" class="hiddenSmartphone">
+				<img border='0' src="{CHARDATA_ICON}" alt="" />
+			</div>
+			<div class="floatLeft">
+				<div id="profile_charname">
+					<a target="_blank" href="{CHARDATA_PROFILEURL}">{CHARDATA_NAME}</a>
+				</div>
+				<div id="profile_titel_guild">
+					{CHARDATA_TITLE}
+					<br />
+					<span class="profile_guild"><a target="_blank" href="{bnetlinks:guild}">{CHARDATA_GUILDNAME}</a> ❮{CHARDATA_GUILDREALM}❯</span>
+				</div>
+				<div class="clear"></div>
+				<div id="profile_charinfos">
+					{L_level} {DATA_LEVEL}, {DATA_NAME_RACE}, {DATA_CLASSNAME}, {CHARDATA_POINTS} <i class="adminicon"></i>
+				</div>
+			</div>
+			<div>
+				<div class="profile_itemlevel">
+					<div class="profile_itemlevel_avg">
+						<span class="Media-icon wowsvg icon-sword">
+							<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#swords"></use></svg>
+						</span>
+					
+					
+					{ITEM_LEVEL_AVG}</div>
+					<div class="profile_itemlevel_txt">
+						<div class="profile_itemlevel_avgtxt"> {GL_avg_itemlevel}</div>
+						<div class="profile_itemlevel_eq">({ITEM_LEVEL_EQP} {GL_avg_itemlevel_equiped})</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div class="wow-char-left">
+			<div class="" style="background: #1e130d url({CHARACTER_IMG}) center center no-repeat; height:700px;">
+				<div>
+					<div class="floatLeft"><ul id="wow_icons_left">
+													<!-- BEGIN itemicons_left -->
+													<li style="clear:both;"><div class="floatLeft">{itemicons_left.ICON}</div> <div class="floatLeft hiddenSmartphone" style="margin-left: 10px;"><span class="q{itemicons_left.QUALITY}">{itemicons_left.NAME}</span><br/>{itemicons_left.LEVEL}</div></li>
+													<!-- END itemicons_left -->
+												</ul></div>
+					<div class="floatRight"><ul id="wow_icons_right">
+													<!-- BEGIN itemicons_right -->
+													<li style="clear:both;"><div class="floatRight">{itemicons_right.ICON}</div> <div class="floatRight hiddenSmartphone" style="text-align: right; margin-right: 10px;"><span class="q{itemicons_right.QUALITY}">{itemicons_right.NAME}</span><br/>{itemicons_right.LEVEL}</div></li>
+													<!-- END itemicons_right -->
+												</ul></div>
+					<div class="clear">
+						<div class="grid">
+							<div class="col6">
+								<ul id='wow_icons_bottom_left'>
+									<!-- BEGIN itemicons_bottom_left -->
+									<li style="clear:both;"><div class="floatRight">{itemicons_bottom_left.ICON}</div> <div class="floatRight hiddenSmartphone" style="text-align: right; margin-right: 10px;"><span class="q{itemicons_bottom_left.QUALITY}">{itemicons_bottom_left.NAME}</span><br/>{itemicons_bottom_left.LEVEL}</div></li>
+									<!-- END itemicons_bottom_left -->
+								</ul>
+							</div>
+							<div class="col6 last">
+								<ul id='wow_icons_bottom_right'>
+								
+								<!-- BEGIN itemicons_bottom_right -->
+								<li style="clear:both;"><div class="floatLeft">{itemicons_bottom_right.ICON}</div> <div class="floatLeft hiddenSmartphone" style="margin-left: 10px;"><span class="q{itemicons_bottom_right.QUALITY}">{itemicons_bottom_right.NAME}</span><br/>{itemicons_bottom_right.LEVEL}</div></li>
+								<!-- END itemicons_bottom_right -->					
+								</ul>
+							</div>
+						</div>					
+					</div>
+				</div>
+				
+				<div class="wow-profilers-container">
+					<ul>
+					<!-- BEGIN profilers -->
+					<li><a href="{profilers.URL}"><img src="{profilers.IMG}" title="{profilers.ALT}" alt="{profilers.ALT}" class="gameicon" /></a></li>
+					<!-- END profilers -->
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="wow-char-statsbar" style="padding-top:20px;">
+			<div class="grid">
+				<div class="col3">
+					<div class="floatLeft">
+						<span class="Media-icon wowsvg icon-health">
+							<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#health"></use></svg>
+						</span>
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{HEALTH_VALUE}</div><span class="wow-health-value">{GL_health}</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="col3">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-mana">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#mana"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{POWER_VALUE}</div><span class="wow-health-value">{POWER_NAME}</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="col3">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-strength">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="injected-svg Icon-svg" data-src="/static/components/Icon/svg/strength.2d7e04caf81924c654483f990016042c.svg#strength" xmlns:xlink="http://www.w3.org/1999/xlink" data-queryselectoralways-ignore=""><g xmlns="http://www.w3.org/2000/svg" id="strength"><path d="M57.355 42.637A27.245 27.245 0 0059.501 32c0-3.685-.724-7.262-2.146-10.637V6.756H42.794a27.168 27.168 0 00-10.683-2.172c-3.702 0-7.295.733-10.683 2.172H6.867v14.606A27.256 27.256 0 004.722 32c0 3.687.724 7.264 2.145 10.637v14.607h14.561a27.19 27.19 0 0010.683 2.173c3.701 0 7.294-.734 10.683-2.173h14.561V42.637zm-1.5-34.381v10.068a27.462 27.462 0 00-1.021-1.636c-.065-.098-.138-.19-.204-.286a27.278 27.278 0 00-1.188-1.591c-.13-.161-.26-.322-.393-.481a27.235 27.235 0 00-1.545-1.704 27.292 27.292 0 00-2.174-1.94 27.119 27.119 0 00-1.573-1.182c-.102-.071-.2-.147-.303-.217a27.755 27.755 0 00-1.642-1.031h10.043zm-47.488 0h10.042c-.562.324-1.108.67-1.643 1.032-.102.069-.199.145-.3.215-.541.376-1.066.772-1.577 1.185a27.331 27.331 0 00-2.173 1.939l-.017.018a27.115 27.115 0 00-1.919 2.164 26.908 26.908 0 00-1.19 1.593c-.066.096-.138.188-.203.285-.358.533-.7 1.077-1.021 1.636V8.256zm0 47.488V45.676c.321.56.664 1.105 1.022 1.638.064.096.135.186.2.281a27.14 27.14 0 001.581 2.072c.494.587 1.002 1.16 1.543 1.702l.002.002a27.154 27.154 0 002.173 1.94c.512.414 1.037.81 1.579 1.187.101.07.197.146.299.215.535.361 1.081.707 1.642 1.031H8.367zm13.502.062A25.834 25.834 0 018.306 42.2 25.768 25.768 0 016.222 32c0-3.538.701-6.969 2.084-10.199A25.836 25.836 0 0121.869 8.194a25.696 25.696 0 0110.242-2.111c3.553 0 6.998.71 10.242 2.111A25.838 25.838 0 0155.916 21.8 25.769 25.769 0 0158.001 32c0 3.536-.701 6.968-2.085 10.199a25.828 25.828 0 01-13.563 13.606 25.693 25.693 0 01-10.242 2.111 25.679 25.679 0 01-10.242-2.11zm33.986-.062H45.813c.562-.324 1.108-.67 1.642-1.031.103-.069.2-.146.302-.216a27.52 27.52 0 001.571-1.181c.163-.132.325-.263.484-.398a27.704 27.704 0 001.69-1.541l.035-.038a26.998 26.998 0 001.907-2.152c.412-.513.807-1.04 1.182-1.583.068-.098.141-.192.208-.292.357-.532.699-1.076 1.02-1.635v10.067z"></path><path d="M49.771 31.52H47.57v-6.691c0-.821-.672-1.492-1.492-1.492-.821 0-1.492.672-1.492 1.492 0-.821-.672-1.492-1.492-1.492s-1.494.671-1.494 1.491c0-.821-.672-1.492-1.492-1.492s-1.492.672-1.492 1.492v6.691H25.608v-6.691c0-.821-.672-1.492-1.492-1.492s-1.492.672-1.492 1.492c0-.821-.672-1.492-1.492-1.492s-1.492.672-1.492 1.492c0-.821-.672-1.492-1.492-1.492-.821 0-1.492.672-1.492 1.492v6.691h-2.201v2.154h2.201v6.691c0 .821.672 1.492 1.492 1.492.821 0 1.492-.672 1.492-1.492 0 .821.672 1.492 1.492 1.492s1.492-.672 1.492-1.492c0 .821.672 1.492 1.492 1.492s1.492-.672 1.492-1.492v-6.691h13.007v6.691c0 .821.672 1.492 1.492 1.492s1.492-.672 1.492-1.492c0 .821.672 1.492 1.492 1.492s1.492-.672 1.492-1.492c0 .821.672 1.492 1.492 1.492.821 0 1.492-.672 1.492-1.492v-6.691h2.201V31.52z"></path></g></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{STRENGTH_VALUE}</div><span class="wow-health-value">{GL_strength}</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="col3 last">
+
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-stamina">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#stamina"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{STAMINA_VALUE}</div><span class="wow-health-value">{GL_stamina}</span> </div>
+					<div class="clear"></div>
+				
+				</div>
+				<div class="col3">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-crit">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#critical-strike"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{SPELCRIT_VALUE} ({CRIT_RATING})</div><span class="wow-health-value">{GL_spellCrit}</span> </div>
+					<div class="clear"></div>
+				
+				</div>
+				<div class="col3">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-haste">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#haste"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{HASTE_VALUE} ({HASTE_RATING})</div><span class="wow-health-value">{GL_haste}</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="col3">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-mastery">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#mastery"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{MASTERY_VALUE} ({MASTERY_RATING})</div><span class="wow-health-value">{GL_mastery}</span> </div>
+					<div class="clear"></div>
+				
+				</div>
+				<div class="col3 last">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-versatibility">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#versatility"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{VERSATILITY_VALUE}</div><span class="wow-health-value">{GL_versatility}</span> </div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		
+			
+		<div class="wow-char-talents" style="padding-top:20px;">
+			<h2>{GL_skills}<a target="_blank" href="{bnetlinks:talents}"> <i class="fa fa-external-link"></i></a></h2>
+		
+			<div id='talent_tabs'>
+				<ul>
+					<!-- BEGIN talents -->
+					<li>
+						<a href='#talenttab-{talents.ID}'>
+							<span class="talenttab_icon" title="{talents.NAME}"><img class="icon-frame gameicon" src="{talents.ICON}" alt="" /></span>
+							<!-- IF talents.SELECTED -->{talents.NAME} <span class="talenttab_select"><i class="fa fa-check-square fa-fw fa-lg" style="color:green;"></i></span><!-- ENDIF -->
+						</a>
+					</li>
+					<!-- END talents -->
+				</ul>
+				<!-- BEGIN talents -->
+				<div id="talenttab-{talents.ID}">
+					<div class="wow-char-talents-spec-desc">{talents.DESCRIPTION}</div>
+					
+					<div class="grid">
+						<!-- BEGIN special -->
+						<div class="col4 last">
+							<div class="wow-char-talents-spec"><span class="wow-char-talents-spec-value">{talents.special.VALUE}</span> <span class="coretip" <!-- IF talents.special.DESCRIPTION --> data-coretip="{talents.special.DESCRIPTION}" <!-- ENDIF -->>{talents.special.ICON} {talents.special.NAME}</span></div>
+						</div>
+						<!-- END special -->
+					</div>
+				</div>
+				<!-- END talents -->
+			</div>
+		
+		</div>
+		
+		<div class="wow-char-professions">
+			<h2>{GL_uc_prof_professions}</h2>
+		
+			<table class="table fullwidth">
+				<!-- BEGIN professions -->
+				<tr class="row2 profession-row">
+					<td>
+						<span class="profession-icon icon-frame frame-14"><img src="{professions.ICON}" alt="" class="gameicon" /></span><span class="profession-name">{professions.NAME}</span>
+					</td>
+					<td width="60%">
+						{professions.BAR}
+					</td>
+				</tr>
+				<!-- END professions -->
+			</table>
+
+			<div class="clear"></div>
+		</div>
+		
+
+		</div>
+	<br />
+
+	<table class="table fullwidth borderless">
+		<tr>
+			<td valign="top" width="95%">
+				<div id='char1_tabs'>
+					<ul>
+						<li><a href='#char1tabs-1'><span>{GL_uc_bosskills}</span></a></li>
+						<!-- IF S_ADMIN --><li><a href='#char1tabs-4'><span class="adminicon"> {L_tab_notes}</span></a></li><!-- ENDIF -->
+					</ul>
+
+					<div id="char1tabs-1">
+						<div class="tab-content">
+							<div id='achievement_tabs'>
+								<ul>
+									<!-- BEGIN bossprogress_cat -->
+									<li><a href='#achievementtab-{bossprogress_cat.ID}'><span>{bossprogress_cat.NAME}</span></a></li>
+									<!-- END bossprogress_cat -->
+								</ul>
+
+								<!-- BEGIN bossprogress_cat -->
+								<div id="achievementtab-{bossprogress_cat.ID}">
+										<div class="bossprogress-container">
+										<!-- BEGIN bossprogress_val -->
+										<div class="bossprogress-item">
+											<div style="background-image: url('{bossprogress_cat.bossprogress_val.ICON}');" class="bossprogress-cover"></div>
+											<div class="bossprogress-bossname">
+												<h4>{bossprogress_cat.bossprogress_val.NAME}</h4>
+											</div>
+											<div class="coretip-large tt_bossprogress" data-coretip="{bossprogress_cat.bossprogress_val.BARS_TT}">{bossprogress_cat.bossprogress_val.BARS_BAR}</div>
+										</div>
+										<!-- END bossprogress_val -->
+										</div>
+								</div>
+								<!-- END bossprogress_cat -->
+							</div>
+						</div>
+					</div>
+
+
+					<!-- IF S_ADMIN -->
+					<div id="char1tabs-4">
+						<div class="tab-content">
+							<table class="table fullwidth">
+								<tr class="row1" >
+									<td align="left" width="40%" class="nowrap">
+										{NOTES}
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- ENDIF -->
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<br />
+<!-- ELSE -->
+
+<!-- IF ERRORMSG_BNET != "" -->
+<div class="infobox infobox-large infobox-red clearfix">
+	<i class="icon-laptop fa-4x pull-left"></i> {ERRORMSG_BNET}
+</div>
+<!-- ENDIF -->
+
+<!-- IF NO_SERVER_SET -->
+<div class="infobox infobox-large infobox-red clearfix">
+	<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> {GL_no_realm}
+</div>
+<!-- ENDIF -->
+
+<div class="grid">
+	<div class="onerow">
+		<div class="col12 last">
+			<div id="profile">
+					<div id="profile_charicon" class="hiddenSmartphone">
+						<img border='0' src="{CHARDATA_ICON}" alt="" />
+					</div>
+					<div class="floatLeft">
+						<div id="profile_charname">
+							{CHARDATA_NAME}
+						</div>
+						<div id="profile_titel_guild">
+							{CHARDATA_TITLE}
+							<br />
+							<span class="profile_guild"><a target="_blank" href="{bnetlinks:guild}">{DATA_GUILDTAG}</a> ❮{CHARDATA_GUILDREALM}❯</span>
+						</div>
+						<div class="clear"></div>
+						<div id="profile_charinfos">
+							{L_level} {DATA_LEVEL}, {DATA_NAME_RACE}, {DATA_NAME_CLASS}
+						</div>
+					</div>
+					<div>
+					</div>
+					<div class="clear"></div>
+				</div>
+		</div>
+	</div>
+	
+	<div class="onerow">
+		<div class="col6">
+			<table border="0" align="left" width="100%" style="height: 550px; max-width:740px;">
+				<tr valign="top">
+					<td style="background: #1e130d url({CHARACTER_IMG}) center top no-repeat;"></td>
+				</tr>
+		 	</table>
+		
+		</div>
+	</div>
+</div>
+<br />
+
+<div class="wow-char-statsbar" style="padding-top:20px;">
+			<div class="grid">
+				<div class="col3">
+					<div class="floatLeft">
+						<span class="Media-icon wowsvg icon-health">
+							<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#health"></use></svg>
+						</span>
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{DATA_HEALTH_BAR}</div><span class="wow-health-value">{GL_health}</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="col3 last">
+					<div class="floatLeft">
+					<span class="Media-icon wowsvg icon-mana">
+						<svg class="Icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64"><use xlink:href="{EQDKP_ROOT_PATH}games/wow/profiles/icons.svg#mana"></use></svg>
+					</span>
+					
+					</div>
+					<div class="floatLeft"><div class="wow-health-name">{DATA_SECOND_BAR}</div><span class="wow-health-value">{POWER_BAR_NAME}</span> </div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+
+<h2>{GL_uc_prof_professions}</h2>
+<table class="table fullwidth">
+	<!-- BEGIN professions -->
+	<tr class="row2 profession-row">
+		<td>
+			<span class="profession-icon icon-frame frame-14"><img src="{professions.ICON}" alt="" class="gameicon"/></span><span class="profession-name">{professions.NAME}</span>
+		</td>
+		<td width="200px">
+			{professions.BAR}
+		</td>
+	</tr>
+	<!-- END professions -->
+</table>
+
+<!-- IF S_ADMIN -->
+<br />
+<div id="char1tabs-4">
+	<h2><span class="adminicon"> {L_tab_notes}</span></h2>
+	<div class="tab-content">
+		<table class="table fullwidth">
+			<tr class="row1" >
+				<td align="left" width="40%" class="nowrap">
+					{NOTES}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<br />
+<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<div class="tableHeader">
+	<h2>{L_DKP_NAME}</h2>
+</div>
+<input type="checkbox" onchange="window.location='{SID}&with_twinks='+ ((this.checked) ? 0 : 1)" name="with_twinks" value="1" <!-- IF not S_WITH_TWINK_DKP -->checked="checked"<!-- ENDIF -->/> {L_points_for_this_char}
+<br /><br />
+<table class="table fullwidth hptt colorswitch scrollable-x borderless">
+	{MEMBER_POINTS}
+</table>
+<br />
+<div id='profile_information'>
+	<ul>
+		<!-- IF CUSTOM_FIELDS --><li><a href='#fragment-2-0'><span>{L_tab_customfields}</span></a></li><!-- ENDIF -->
+		<li><a href='#fragment-2-1'><span>{L_tab_raids}</span></a></li>
+		<li><a href='#fragment-2-2'><span>{L_tab_items}</span></a></li>
+		<!-- IF not S_POINTS_DISABLED -->
+		<li><a href='#fragment-2-3'><span>{L_tab_adjustments}</span></a></li>
+		<!-- ENDIF -->
+		<li><a href='#fragment-2-4'><span>{L_tab_attendance}</span></a></li>
+	</ul>
+
+	<!-- ALL PROFILE FIELDS TABLE -->
+	<!-- IF CUSTOM_FIELDS -->
+	<div id="fragment-2-0">
+		<fieldset class="settings mediumsettings">
+			<!-- BEGIN pfield_custom -->
+			<dl>
+				<dt><label>{pfield_custom.NAME}</label></dt>
+				<dd>{pfield_custom.VALUE}</dd>
+			</dl>
+			<!-- END pfield_custom -->
+		</fieldset>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- RAIDS TABLE -->
+	<div id="fragment-2-1">
+		<div class="tableHeader">
+			<h2>{L_raid_attendance_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{RAID_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{RAID_PAGINATION}
+		</div>
+	</div>
+
+	<!-- ITEMS TABLE -->
+	<div id="fragment-2-2">
+		<div class="tableHeader">
+			<h2>{L_item_purchase_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{ITEM_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{ITEM_PAGINATION}
+		</div>
+	</div>
+	
+	<!-- IF not S_POINTS_DISABLED -->
+	<!-- ADJUSTMENTS TABLE-->
+	<div id="fragment-2-3">
+		<div class="tableHeader">
+			<h2>{L_individual_adjustment_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{ADJUSTMENT_OUT}
+		</table>
+		<div class="center pagination_wrapper">
+			{ADJUSTMENT_PAGINATION}
+		</div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- ATTENDANCE -->
+	<div id="fragment-2-4">
+		<table class="table fullwidth hptt colorswitch scrollable-x">
+		{EVENT_ATT_OUT}
+		</table>
+	</div>
+</div>

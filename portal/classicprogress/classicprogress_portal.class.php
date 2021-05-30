@@ -1,10 +1,8 @@
 <?php
 /*	Project:			EQdkp-Plus
  *	Package:			classic Progress Module - Portal
- *	CreatorsLink:		https://www.therisingphoenix.eu
- *	Usagelink:			https://www.therisingphoenix.eu
  *
- *	Copyright (C) 2019 Motrish	
+ *	Copyright (C) 2021 Motrish	
  *
  */
 
@@ -17,7 +15,7 @@ class classicprogress_portal extends portal_generic {
 	protected static $path		= 'classicprogress';
 	protected static $data		= array(
 		'name'			=> 'WoW Classic Progress',
-		'version'		=> '1.1.3',
+		'version'		=> '1.1.4',
 		'author'		=> 'Motrish',
 		'icon'			=> 'fa-code',
 		'contact'		=> 'nehmer.michael@gmx.de',
@@ -42,7 +40,7 @@ class classicprogress_portal extends portal_generic {
 					'classic_4_10'	=> $this->user->lang('classic_4_10'),
 					'classic_5_10'	=> $this->user->lang('classic_5_10'),
 					'classic_6_10'	=> $this->user->lang('classic_6_10'),
-					'classic_8_10'	=> $this->user->lang('classic_8_10'),	
+					'classic_7_10'	=> $this->user->lang('classic_7_10'),	
 					'classic_8_10'	=> $this->user->lang('classic_8_10'),		
 					'classic_9_10'	=> $this->user->lang('classic_9_10'),	
 					'classic_clear'	=> $this->user->lang('classic_clear'),
@@ -90,7 +88,7 @@ class classicprogress_portal extends portal_generic {
 					'classic_4_10'	=> $this->user->lang('classic_4_10'),
 					'classic_5_10'	=> $this->user->lang('classic_5_10'),
 					'classic_6_10'	=> $this->user->lang('classic_6_10'),
-					'classic_8_10'	=> $this->user->lang('classic_8_10'),	
+					'classic_7_10'	=> $this->user->lang('classic_7_10'),	
 					'classic_8_10'	=> $this->user->lang('classic_8_10'),		
 					'classic_9_10'	=> $this->user->lang('classic_9_10'),	
 					'classic_clear'	=> $this->user->lang('classic_clear'),
@@ -126,7 +124,7 @@ class classicprogress_portal extends portal_generic {
 					'classic_4_9'	=> $this->user->lang('classic_4_9'),
 					'classic_5_9'	=> $this->user->lang('classic_5_9'),
 					'classic_6_9'	=> $this->user->lang('classic_6_9'),
-					'classic_8_9'	=> $this->user->lang('classic_8_9'),
+					'classic_7_9'	=> $this->user->lang('classic_7_9'),
 					'classic_8_9'	=> $this->user->lang('classic_8_9'),
 					'classic_clear'	=> $this->user->lang('classic_clear'),
 				),
@@ -224,8 +222,7 @@ class classicprogress_portal extends portal_generic {
 			if($this->config('boss'.$actualBoss) == "classic_4_8"){$Down="<font color='yellow'>".$this->user->lang('classic_4_8')."</font>";}					
 			if($this->config('boss'.$actualBoss) == "classic_5_8"){$Down="<font color='yellow'>".$this->user->lang('classic_5_8')."</font>";}					
 			if($this->config('boss'.$actualBoss) == "classic_6_8"){$Down="<font color='yellow'>".$this->user->lang('classic_6_8')."</font>";}
-			if($this->config('boss'.$actualBoss) == "classic_7_8"){$Down="<font color='yellow'>".$this->user->lang('classic_7_8')."</font>";}				
-			if($this->config('boss'.$actualBoss) == "classic_8_8"){$Down="<font color='yellow'>".$this->user->lang('classic_8_8')."</font>";}					
+			if($this->config('boss'.$actualBoss) == "classic_7_8"){$Down="<font color='yellow'>".$this->user->lang('classic_7_8')."</font>";}									
 
 			if($this->config('boss'.$actualBoss) == "classic_0_9"){$Down="<font color='red'>".$this->user->lang('classic_0_9')."</font>";}					 
 			if($this->config('boss'.$actualBoss) == "classic_1_9"){$Down="<font color='yellow'>".$this->user->lang('classic_1_9')."</font>";}					 
@@ -235,7 +232,7 @@ class classicprogress_portal extends portal_generic {
 			if($this->config('boss'.$actualBoss) == "classic_5_9"){$Down="<font color='yellow'>".$this->user->lang('classic_5_9')."</font>";}					 
 			if($this->config('boss'.$actualBoss) == "classic_6_9"){$Down="<font color='yellow'>".$this->user->lang('classic_6_9')."</font>";}					 
 			if($this->config('boss'.$actualBoss) == "classic_7_9"){$Down="<font color='yellow'>".$this->user->lang('classic_7_9')."</font>";}					 
-			if($this->config('boss'.$actualBoss) == "classic_8_9"){$Down="<font color='yellow'>".$this->user->lang('classic_8_10')."</font>";}					 
+			if($this->config('boss'.$actualBoss) == "classic_8_9"){$Down="<font color='yellow'>".$this->user->lang('classic_8_9')."</font>";}					 
 
 			if($this->config('boss'.$actualBoss) == "classic_0_10"){$Down="<font color='red'>".$this->user->lang('classic_0_10')."</font>";}					
 			if($this->config('boss'.$actualBoss) == "classic_1_10"){$Down="<font color='yellow'>".$this->user->lang('classic_1_10')."</font>";}					 
